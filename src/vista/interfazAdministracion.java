@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+import vista.interfazAdministrarCajeros;
 
 /**
  *
@@ -26,21 +27,427 @@ public class interfazAdministracion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        B_BuscarPorNombreInicial = new javax.swing.JButton();
+        L_Id = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
+        B_BuscarPorID = new javax.swing.JButton();
+        B_Agregar = new javax.swing.JButton();
+        B_Consultar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        salida = new javax.swing.JTextArea();
+        B_BorrarContacto = new javax.swing.JButton();
+        L_Nombres = new javax.swing.JLabel();
+        nombre = new javax.swing.JTextField();
+        L_Apellidos = new javax.swing.JLabel();
+        apellido = new javax.swing.JTextField();
+        L_Telefono = new javax.swing.JLabel();
+        telefono = new javax.swing.JTextField();
+        L_Dirección = new javax.swing.JLabel();
+        B_EditarContacto = new javax.swing.JButton();
+        ncuenta = new javax.swing.JTextField();
+        L_NumeroCuenta = new javax.swing.JLabel();
+        saldo = new javax.swing.JTextField();
+        L_NumeroCuenta1 = new javax.swing.JLabel();
+        B_Consignar = new javax.swing.JButton();
+        B_Retirar = new javax.swing.JButton();
+        B_AdministrarCajeros = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        B_BuscarPorNombreInicial.setText("Buscar por nombre ");
+        B_BuscarPorNombreInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_BuscarPorNombreInicialActionPerformed(evt);
+            }
+        });
+
+        L_Id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_Id.setText("ID:");
+
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+
+        direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direccionActionPerformed(evt);
+            }
+        });
+
+        B_BuscarPorID.setText("Buscar por ID");
+        B_BuscarPorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_BuscarPorIDActionPerformed(evt);
+            }
+        });
+
+        B_Agregar.setText("Agregar");
+        B_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_AgregarActionPerformed(evt);
+            }
+        });
+
+        B_Consultar.setText("Consultar");
+        B_Consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_ConsultarActionPerformed(evt);
+            }
+        });
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Apellido", "Telefono", "Ciudad", "Numero Cuenta", "Saldo", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
+        salida.setColumns(20);
+        salida.setRows(5);
+        jScrollPane2.setViewportView(salida);
+
+        B_BorrarContacto.setText("Borrar contacto");
+        B_BorrarContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_BorrarContactoActionPerformed(evt);
+            }
+        });
+
+        L_Nombres.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_Nombres.setText("Nombres:");
+
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+
+        L_Apellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_Apellidos.setText("Apellidos:");
+
+        apellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apellidoActionPerformed(evt);
+            }
+        });
+
+        L_Telefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_Telefono.setText("Teléfono:");
+
+        telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoActionPerformed(evt);
+            }
+        });
+
+        L_Dirección.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_Dirección.setText("Ciudad:");
+
+        B_EditarContacto.setText("Editar contacto");
+        B_EditarContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_EditarContactoActionPerformed(evt);
+            }
+        });
+
+        ncuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ncuentaActionPerformed(evt);
+            }
+        });
+
+        L_NumeroCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_NumeroCuenta.setText("Numero cuenta:");
+
+        saldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saldoActionPerformed(evt);
+            }
+        });
+
+        L_NumeroCuenta1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        L_NumeroCuenta1.setText("Saldo:");
+
+        B_Consignar.setText("Consignar");
+
+        B_Retirar.setText("Retirar");
+
+        B_AdministrarCajeros.setText("ADMINISTRAR CAJEROS");
+        B_AdministrarCajeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_AdministrarCajerosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(L_Id)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B_BuscarPorID)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(L_NumeroCuenta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ncuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(B_Consultar)
+                                    .addComponent(B_Consignar))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(B_Retirar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(B_Agregar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                        .addComponent(B_BorrarContacto)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(B_EditarContacto)))))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(L_NumeroCuenta1)
+                        .addGap(18, 18, 18)
+                        .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B_BuscarPorNombreInicial)
+                    .addComponent(B_AdministrarCajeros))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(65, 65, 65)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(L_Nombres)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(L_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(L_Dirección)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(L_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(151, 151, 151)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(47, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ncuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L_NumeroCuenta)
+                    .addComponent(L_NumeroCuenta1)
+                    .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(L_Id)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B_BuscarPorID)))
+                .addGap(82, 82, 82)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_Agregar)
+                    .addComponent(B_Consultar)
+                    .addComponent(B_BorrarContacto)
+                    .addComponent(B_EditarContacto)
+                    .addComponent(B_BuscarPorNombreInicial))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_Consignar)
+                    .addComponent(B_Retirar)
+                    .addComponent(B_AdministrarCajeros))
+                .addContainerGap(332, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L_Nombres)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L_Apellidos)
+                        .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L_Telefono)
+                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(L_Dirección)
+                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void B_BuscarPorNombreInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreInicialActionPerformed
+        /*ArrayList<CContacto> lista4 = new ArrayList<>();
+        lista4 = c.BuscarPorNombreInicial(nombre.getText());
+
+        modelo.setRowCount(0);
+
+        if (nombre.getText().isEmpty()) {
+            salida.setText("El campo -Nombres- está vacío. Llene los campos");
+        } else {
+            boolean nomb = false;
+            for (CContacto con : lista4) {
+                modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
+                nomb = true;
+            }
+            if (nomb) {
+                salida.setText("Listado de nombres con: " + nombre.getText() + "."); // si lo de arriba se hizo, devuelve la salida correcta
+            } else {
+                salida.setText("No se encuentran ese nombre o iniciales. ");
+            }
+        }*/
+    }//GEN-LAST:event_B_BuscarPorNombreInicialActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
+
+    private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_direccionActionPerformed
+
+    private void B_BuscarPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorIDActionPerformed
+        /*ArrayList<CContacto> lista6 = new ArrayList<>();
+        lista6 = c.BuscarPorID(id.getText());
+
+        modelo.setRowCount(0);
+
+        if (id.getText().isEmpty()) {
+            salida.setText("El campo -ID- está vacío. Llene los campos");
+        } else {
+            boolean ide = false;
+            for (CContacto con : lista6) {
+                modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
+                ide = true;
+            }
+            if (ide) {
+                salida.setText("ID: " + id.getText() + " encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
+            } else {
+                salida.setText("No se encuentran ese ID. ");
+            }
+        }*/
+    }//GEN-LAST:event_B_BuscarPorIDActionPerformed
+
+    private void B_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarActionPerformed
+        /*
+        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
+            salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
+        } else {
+            boolean agre = c.insertar(nombre.getText(), apellido.getText(), telefono.getText(), direccion.getText(), email.getText());
+            if (agre) {
+                salida.setText("El contacto se ha agregado correctamente.");
+            } else {
+                salida.setText("Error agregando contacto.");
+            }
+        }*/
+    }//GEN-LAST:event_B_AgregarActionPerformed
+
+    private void B_ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarActionPerformed
+        /*ArrayList<CContacto> lista1 = new ArrayList<>();
+        lista1 = c.consultar();
+
+        //limpio la tabla antes de llevar los valores
+        modelo.setRowCount(0);
+
+        for (CContacto con : lista1) {
+            modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
+        }*/
+    }//GEN-LAST:event_B_ConsultarActionPerformed
+
+    private void B_BorrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarContactoActionPerformed
+        /*if (telefono.getText().isEmpty()) {
+            salida.setText("No se ha ingresado un teléfono ");
+        } else {
+            boolean borr = c.borrar(telefono.getText());
+            if (borr) {
+                salida.setText("El contacto se ha borrado correctamente.");
+            } else {
+                salida.setText("Error borrando contacto.");
+            }
+        }*/
+    }//GEN-LAST:event_B_BorrarContactoActionPerformed
+
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreActionPerformed
+
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apellidoActionPerformed
+
+    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefonoActionPerformed
+
+    private void B_EditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EditarContactoActionPerformed
+        /*
+        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
+            salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
+        } else {
+            boolean edit = c.editar(nombre.getText(), apellido.getText(), direccion.getText(), telefono.getText(), email.getText());
+            if (edit) {
+                salida.setText("El contacto se ha editado correctamente.");
+            } else {
+                salida.setText("Error editando contacto.");
+            }
+        }*/
+    }//GEN-LAST:event_B_EditarContactoActionPerformed
+
+    private void ncuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ncuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ncuentaActionPerformed
+
+    private void saldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saldoActionPerformed
+
+    private void B_AdministrarCajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AdministrarCajerosActionPerformed
+        interfazAdministrarCajeros inter=new interfazAdministrarCajeros();
+        inter.setVisible(true);
+    }//GEN-LAST:event_B_AdministrarCajerosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +485,32 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_AdministrarCajeros;
+    private javax.swing.JButton B_Agregar;
+    private javax.swing.JButton B_BorrarContacto;
+    private javax.swing.JButton B_BuscarPorID;
+    private javax.swing.JButton B_BuscarPorNombreInicial;
+    private javax.swing.JButton B_Consignar;
+    private javax.swing.JButton B_Consultar;
+    private javax.swing.JButton B_EditarContacto;
+    private javax.swing.JButton B_Retirar;
+    private javax.swing.JLabel L_Apellidos;
+    private javax.swing.JLabel L_Dirección;
+    private javax.swing.JLabel L_Id;
+    private javax.swing.JLabel L_Nombres;
+    private javax.swing.JLabel L_NumeroCuenta;
+    private javax.swing.JLabel L_NumeroCuenta1;
+    private javax.swing.JLabel L_Telefono;
+    private javax.swing.JTextField apellido;
+    private javax.swing.JTextField direccion;
+    private javax.swing.JTextField id;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField ncuenta;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField saldo;
+    private javax.swing.JTextArea salida;
+    private javax.swing.JTable tabla;
+    private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }
