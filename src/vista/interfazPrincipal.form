@@ -43,7 +43,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="B_IngresarAdministración" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <Component id="L_PortalAdministración" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>

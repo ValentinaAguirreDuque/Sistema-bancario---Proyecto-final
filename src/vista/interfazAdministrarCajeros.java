@@ -4,17 +4,36 @@
  */
 package vista;
 
+import controlador.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.CCajero;
+
 /**
  *
  * @author tinit
  */
 public class interfazAdministrarCajeros extends javax.swing.JFrame {
-
+    
+    // Modelo para manipular la tabla
+    DefaultTableModel modelo;
+    CControlador_Administracion ca = new CControlador_Administracion();
+    
     /**
      * Creates new form interfazAdministrarCajeros
      */
     public interfazAdministrarCajeros() {
         initComponents();
+        
+        //inicio el modelo para manipular la tabla
+        modelo = (DefaultTableModel) tabla.getModel();
+
+        // Mostrar líneas de la tabla
+        tabla.setShowHorizontalLines(true);
+        tabla.setShowVerticalLines(true);
+
+        // Color de las líneas
+        tabla.setGridColor(java.awt.Color.BLACK);
     }
 
     /**
@@ -45,6 +64,7 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         ncincuenta = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         ncien = new javax.swing.JTextField();
+        B_Volver = new javax.swing.JButton();
 
         jButton3.setText("Billetes 20.000");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +176,13 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
             }
         });
 
+        B_Volver.setText("Volver");
+        B_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +200,9 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                                     .addComponent(B_ConsultarCajero)
                                     .addComponent(B_ConsignarCajero))
                                 .addGap(36, 36, 36)
-                                .addComponent(B_RetirarCajero))
+                                .addComponent(B_RetirarCajero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(B_Volver))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -236,7 +265,8 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_ConsignarCajero)
-                    .addComponent(B_RetirarCajero))
+                    .addComponent(B_RetirarCajero)
+                    .addComponent(B_Volver))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -274,15 +304,15 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_B_AgregarCajeroActionPerformed
 
     private void B_ConsultarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarCajeroActionPerformed
-        /*ArrayList<CContacto> lista1 = new ArrayList<>();
-        lista1 = c.consultar();
+        ArrayList<CCajero> lista = new ArrayList<>();
+        lista = ca.consultarCajero();
 
         //limpio la tabla antes de llevar los valores
         modelo.setRowCount(0);
 
-        for (CContacto con : lista1) {
-            modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
-        }*/
+        for (CCajero con : lista) {
+            modelo.addRow(new Object[]{con.getId(), con.getNdiez(), con.getNveinte(), con.getNcincuenta(), con.getNcien(), con.getEstado()});
+        }
     }//GEN-LAST:event_B_ConsultarCajeroActionPerformed
 
     private void B_BorrarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarCajeroActionPerformed
@@ -334,6 +364,13 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ncienActionPerformed
 
+    private void B_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_VolverActionPerformed
+        // TODO add your handling code here:
+        interfazAdministracion p = new interfazAdministracion();
+        p.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_B_VolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -376,6 +413,7 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     private javax.swing.JButton B_ConsultarCajero;
     private javax.swing.JButton B_EditarCajero;
     private javax.swing.JButton B_RetirarCajero;
+    private javax.swing.JButton B_Volver;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -3,19 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+import controlador.CControlador_Administracion;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.CCliente;
 import vista.interfazAdministrarCajeros;
-
+import vista.interfazPrincipal;
 /**
  *
  * @author tinit
  */
 public class interfazAdministracion extends javax.swing.JFrame {
-
+    
+    // Modelo para manipular la tabla
+    DefaultTableModel modelo;
+    CControlador_Administracion c = new CControlador_Administracion();
+    
+    
     /**
      * Creates new form interfazAdministracion
      */
     public interfazAdministracion() {
         initComponents();
+        
+        //inicio el modelo para manipular la tabla
+        modelo = (DefaultTableModel) tabla.getModel();
+
+        // Mostrar líneas de la tabla
+        tabla.setShowHorizontalLines(true);
+        tabla.setShowVerticalLines(true);
+
+        // Color de las líneas
+        tabla.setGridColor(java.awt.Color.BLACK);
     }
 
     /**
@@ -27,13 +46,13 @@ public class interfazAdministracion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        B_BuscarPorNombreInicial = new javax.swing.JButton();
+        B_BuscarPorNombre = new javax.swing.JButton();
         L_Id = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         B_BuscarPorID = new javax.swing.JButton();
-        B_Agregar = new javax.swing.JButton();
-        B_Consultar = new javax.swing.JButton();
+        B_AgregarCliente = new javax.swing.JButton();
+        B_ConsultarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -46,7 +65,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         L_Telefono = new javax.swing.JLabel();
         telefono = new javax.swing.JTextField();
         L_Dirección = new javax.swing.JLabel();
-        B_EditarContacto = new javax.swing.JButton();
+        B_EditarCliente = new javax.swing.JButton();
         ncuenta = new javax.swing.JTextField();
         L_NumeroCuenta = new javax.swing.JLabel();
         saldo = new javax.swing.JTextField();
@@ -54,13 +73,14 @@ public class interfazAdministracion extends javax.swing.JFrame {
         B_Consignar = new javax.swing.JButton();
         B_Retirar = new javax.swing.JButton();
         B_AdministrarCajeros = new javax.swing.JButton();
+        B_Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        B_BuscarPorNombreInicial.setText("Buscar por nombre ");
-        B_BuscarPorNombreInicial.addActionListener(new java.awt.event.ActionListener() {
+        B_BuscarPorNombre.setText("Buscar por nombre ");
+        B_BuscarPorNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_BuscarPorNombreInicialActionPerformed(evt);
+                B_BuscarPorNombreActionPerformed(evt);
             }
         });
 
@@ -86,17 +106,17 @@ public class interfazAdministracion extends javax.swing.JFrame {
             }
         });
 
-        B_Agregar.setText("Agregar");
-        B_Agregar.addActionListener(new java.awt.event.ActionListener() {
+        B_AgregarCliente.setText("Agregar");
+        B_AgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_AgregarActionPerformed(evt);
+                B_AgregarClienteActionPerformed(evt);
             }
         });
 
-        B_Consultar.setText("Consultar");
-        B_Consultar.addActionListener(new java.awt.event.ActionListener() {
+        B_ConsultarCliente.setText("Consultar");
+        B_ConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_ConsultarActionPerformed(evt);
+                B_ConsultarClienteActionPerformed(evt);
             }
         });
 
@@ -117,7 +137,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         salida.setRows(5);
         jScrollPane2.setViewportView(salida);
 
-        B_BorrarContacto.setText("Borrar contacto");
+        B_BorrarContacto.setText("Borrar cliente");
         B_BorrarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_BorrarContactoActionPerformed(evt);
@@ -154,10 +174,10 @@ public class interfazAdministracion extends javax.swing.JFrame {
         L_Dirección.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         L_Dirección.setText("Ciudad:");
 
-        B_EditarContacto.setText("Editar contacto");
-        B_EditarContacto.addActionListener(new java.awt.event.ActionListener() {
+        B_EditarCliente.setText("Editar cliente");
+        B_EditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_EditarContactoActionPerformed(evt);
+                B_EditarClienteActionPerformed(evt);
             }
         });
 
@@ -190,6 +210,13 @@ public class interfazAdministracion extends javax.swing.JFrame {
             }
         });
 
+        B_Volver.setText("Volver");
+        B_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,28 +241,32 @@ public class interfazAdministracion extends javax.swing.JFrame {
                                 .addComponent(ncuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(B_Consultar)
+                                    .addComponent(B_ConsultarCliente)
                                     .addComponent(B_Consignar))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(B_Retirar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(B_Agregar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                        .addComponent(B_AgregarCliente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                                         .addComponent(B_BorrarContacto)
                                         .addGap(27, 27, 27)
-                                        .addComponent(B_EditarContacto)))))))
+                                        .addComponent(B_EditarCliente)))))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(L_NumeroCuenta1)
                         .addGap(18, 18, 18)
                         .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(B_BuscarPorNombreInicial)
+                    .addComponent(B_BuscarPorNombre)
                     .addComponent(B_AdministrarCajeros))
                 .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(B_Volver)
+                .addGap(32, 32, 32))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(65, 65, 65)
@@ -284,17 +315,19 @@ public class interfazAdministracion extends javax.swing.JFrame {
                         .addComponent(B_BuscarPorID)))
                 .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B_Agregar)
-                    .addComponent(B_Consultar)
+                    .addComponent(B_AgregarCliente)
+                    .addComponent(B_ConsultarCliente)
                     .addComponent(B_BorrarContacto)
-                    .addComponent(B_EditarContacto)
-                    .addComponent(B_BuscarPorNombreInicial))
+                    .addComponent(B_EditarCliente)
+                    .addComponent(B_BuscarPorNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_Consignar)
                     .addComponent(B_Retirar)
                     .addComponent(B_AdministrarCajeros))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                .addComponent(B_Volver)
+                .addGap(30, 30, 30))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -319,7 +352,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void B_BuscarPorNombreInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreInicialActionPerformed
+    private void B_BuscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreActionPerformed
         /*ArrayList<CContacto> lista4 = new ArrayList<>();
         lista4 = c.BuscarPorNombreInicial(nombre.getText());
 
@@ -339,7 +372,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
                 salida.setText("No se encuentran ese nombre o iniciales. ");
             }
         }*/
-    }//GEN-LAST:event_B_BuscarPorNombreInicialActionPerformed
+    }//GEN-LAST:event_B_BuscarPorNombreActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
@@ -371,7 +404,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_B_BuscarPorIDActionPerformed
 
-    private void B_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarActionPerformed
+    private void B_AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarClienteActionPerformed
         /*
         if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
@@ -383,19 +416,19 @@ public class interfazAdministracion extends javax.swing.JFrame {
                 salida.setText("Error agregando contacto.");
             }
         }*/
-    }//GEN-LAST:event_B_AgregarActionPerformed
+    }//GEN-LAST:event_B_AgregarClienteActionPerformed
 
-    private void B_ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarActionPerformed
-        /*ArrayList<CContacto> lista1 = new ArrayList<>();
-        lista1 = c.consultar();
+    private void B_ConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarClienteActionPerformed
+        ArrayList<CCliente> lista1 = new ArrayList<>();
+        lista1 = c.consultarClientes();
 
         //limpio la tabla antes de llevar los valores
         modelo.setRowCount(0);
 
-        for (CContacto con : lista1) {
-            modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
-        }*/
-    }//GEN-LAST:event_B_ConsultarActionPerformed
+        for (CCliente con : lista1) {
+            modelo.addRow(new Object[]{con.getId(), con.getNombre(), con.getApellido(), con.getTelefono(), con.getCiudad(), con.getNcuenta(), con.getSaldo(), con.getEstado()});
+        }
+    }//GEN-LAST:event_B_ConsultarClienteActionPerformed
 
     private void B_BorrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarContactoActionPerformed
         /*if (telefono.getText().isEmpty()) {
@@ -422,7 +455,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_telefonoActionPerformed
 
-    private void B_EditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EditarContactoActionPerformed
+    private void B_EditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EditarClienteActionPerformed
         /*
         if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
@@ -434,7 +467,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
                 salida.setText("Error editando contacto.");
             }
         }*/
-    }//GEN-LAST:event_B_EditarContactoActionPerformed
+    }//GEN-LAST:event_B_EditarClienteActionPerformed
 
     private void ncuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ncuentaActionPerformed
         // TODO add your handling code here:
@@ -447,7 +480,15 @@ public class interfazAdministracion extends javax.swing.JFrame {
     private void B_AdministrarCajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AdministrarCajerosActionPerformed
         interfazAdministrarCajeros inter=new interfazAdministrarCajeros();
         inter.setVisible(true);
+        dispose();
     }//GEN-LAST:event_B_AdministrarCajerosActionPerformed
+
+    private void B_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_VolverActionPerformed
+        // TODO add your handling code here:
+        interfazPrincipal p = new interfazPrincipal();
+        p.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_B_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,14 +527,15 @@ public class interfazAdministracion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_AdministrarCajeros;
-    private javax.swing.JButton B_Agregar;
+    private javax.swing.JButton B_AgregarCliente;
     private javax.swing.JButton B_BorrarContacto;
     private javax.swing.JButton B_BuscarPorID;
-    private javax.swing.JButton B_BuscarPorNombreInicial;
+    private javax.swing.JButton B_BuscarPorNombre;
     private javax.swing.JButton B_Consignar;
-    private javax.swing.JButton B_Consultar;
-    private javax.swing.JButton B_EditarContacto;
+    private javax.swing.JButton B_ConsultarCliente;
+    private javax.swing.JButton B_EditarCliente;
     private javax.swing.JButton B_Retirar;
+    private javax.swing.JButton B_Volver;
     private javax.swing.JLabel L_Apellidos;
     private javax.swing.JLabel L_Dirección;
     private javax.swing.JLabel L_Id;

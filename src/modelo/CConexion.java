@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -21,14 +20,15 @@ public class CConexion {
    }
    
    public Connection conectar(){
-       Connection con=null;
+       Connection con = null;
        try{         
-          con= DriverManager.getConnection(url,usuario,contrasena);
+          con = DriverManager.getConnection(url,usuario,contrasena);
           System.out.println("conexion correcta");
           return con;
        }catch (Exception e){
-          return null;
+           System.out.println("Conexión incorrecta");
        }
+       return con;
    }
    
    public void desconectar(Connection con){

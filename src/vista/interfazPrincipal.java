@@ -110,11 +110,13 @@ public class interfazPrincipal extends javax.swing.JFrame {
     private void B_IngresarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IngresarCajeroActionPerformed
         interfazCajero inter=new interfazCajero();
         inter.setVisible(true);
+        dispose();
     }//GEN-LAST:event_B_IngresarCajeroActionPerformed
 
     private void B_IngresarAdministraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IngresarAdministraciónActionPerformed
         interfazAdministracion inter=new interfazAdministracion();
         inter.setVisible(true);
+        dispose();
     }//GEN-LAST:event_B_IngresarAdministraciónActionPerformed
 
     /**

@@ -22,7 +22,7 @@ public class CConsultas_Administracion {
 //------------------------------------------------------------------------------    
     public ArrayList<CCajero> consultarCajero(Connection con) {
         this.con = con;
-        query = "SELECT * FROM datos";
+        query = "SELECT * FROM cajeros";
         ArrayList<CCajero> lista = new ArrayList<>();
         try {
             //preparo la consulta
@@ -31,7 +31,7 @@ public class CConsultas_Administracion {
             ResultSet resultado = preparar.executeQuery();
 
             while (resultado.next()) {
-                CCajero c = new CCajero(
+                CCajero ca = new CCajero(
                         resultado.getInt("id"),
                         resultado.getInt("ndiez"),
                         resultado.getInt("nveinte"),
@@ -39,7 +39,7 @@ public class CConsultas_Administracion {
                         resultado.getInt("ncien"),
                         resultado.getInt("estado")
                 );
-                lista.add(c);
+                lista.add(ca);
             }
             System.out.println("Consulta correcta");
             return lista;
@@ -52,7 +52,7 @@ public class CConsultas_Administracion {
 //------------------------------------------------------------------------------
     public ArrayList<CCliente> consultarClientes(Connection con) {
         this.con = con;
-        query = "SELECT * FROM datos";
+        query = "SELECT * FROM clientes";
         ArrayList<CCliente> lista1 = new ArrayList<>();
         try {
             //preparo la consulta
@@ -82,9 +82,9 @@ public class CConsultas_Administracion {
         }
     }
 //------------------------------------------------------------------------------
-    public boolean ingresarBilletes(Connection con, String nombres, String apellidos, String telefono, String direccion, String email) {
+    public boolean ingresarBilletes(Connection con, int ndiez, int nveinte, int ncincuenta, int ncien) {
         this.con = con;
-        query = "INSERT INTO datos(id,nombres,apellidos,telefono,direccion,email) VALUES (null,'" + nombres + "','" + apellidos + "','" + telefono + "','" + direccion + "','" + email + "');";
+        query = "INSERT INTO cajeros (ndiez,nveinte,ncincuenta,ncien) VALUES ('" + ndiez + "','" + nveinte + "','" + ncincuenta + "','" + ncien + "');";
         try {
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
@@ -96,5 +96,46 @@ public class CConsultas_Administracion {
             return false;
         }
     }
-
+//------------------------------------------------------------------------------
+    public boolean ingresarCliente(Connection con, String nombre, String apellido, String telefono, String ciudad, String ncuenta, double saldo) {
+        this.con = con;
+        query = "INSERT INTO datos(id,nombres,apellidos,telefono,ciudad,ncuenta,saldo) VALUES (null,'" + nombre + "','" + apellido + "','" + telefono + "','" + ciudad + "','" + ncuenta + "','" + saldo + "');";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error en el sql");
+            return false;
+        }
+    }
+//------------------------------------------------------------------------------
+    public boolean agregarCajero(Connection con, int ndiez, int nveinte, int ncincuenta, int ncien) {
+        this.con = con;
+        query = "INSERT INTO cajeros(id,ndiez,nveinte,ncincuenta,ncien,estado) VALUES (null," + ndiez + "," + nveinte + "," + ncincuenta + "," + ncien + ",0);";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error en el sql");
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }// fin
