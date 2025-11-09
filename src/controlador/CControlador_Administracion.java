@@ -51,7 +51,13 @@ public class CControlador_Administracion {
         con.desconectar(conecta);
         return bandera;
     }
-
+//------------------------------------------------------------------------------
+    public boolean agregarClientes (String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
+        conecta = con.conectar();
+        boolean bandera = consulta.agregarClientes(conecta, nombre, apellido, telefono, ciudad, ncuenta, saldo);
+        con.desconectar(conecta);
+        return bandera;
+    }
     
     
     

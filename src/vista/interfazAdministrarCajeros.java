@@ -47,6 +47,8 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
 
         jButton3 = new javax.swing.JButton();
         nveinte1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        salida = new javax.swing.JTextArea();
         B_EditarCajero = new javax.swing.JButton();
         B_AgregarCajero = new javax.swing.JButton();
         B_ConsultarCajero = new javax.swing.JButton();
@@ -65,6 +67,8 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         ncien = new javax.swing.JTextField();
         B_Volver = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        salidaCajero = new javax.swing.JTextArea();
 
         jButton3.setText("Billetes 20.000");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +82,10 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                 nveinte1ActionPerformed(evt);
             }
         });
+
+        salida.setColumns(20);
+        salida.setRows(5);
+        jScrollPane2.setViewportView(salida);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,68 +191,76 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
             }
         });
 
+        salidaCajero.setColumns(20);
+        salidaCajero.setRows(5);
+        jScrollPane3.setViewportView(salidaCajero);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 213, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(210, 210, 210))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(210, 210, 210))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(B_ConsultarCajero)
+                            .addComponent(B_ConsignarCajero))
+                        .addGap(36, 36, 36)
+                        .addComponent(B_RetirarCajero)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(B_Volver))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(B_ConsultarCajero)
-                                    .addComponent(B_ConsignarCajero))
-                                .addGap(36, 36, 36)
-                                .addComponent(B_RetirarCajero)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(B_Volver))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                                .addComponent(B_AgregarCajero))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 79, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                                        .addComponent(B_AgregarCajero))
+                                        .addComponent(jButton4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ncincuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 79, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton4)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ncincuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton1)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ndiez, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(nveinte, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jButton5)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(ncien, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(B_BorrarCajero)
-                                        .addGap(49, 49, 49)
-                                        .addComponent(B_EditarCajero)))))
-                        .addGap(81, 81, 81))))
+                                        .addComponent(jButton1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ndiez, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(nveinte, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jButton5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ncien, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(B_BorrarCajero)
+                                .addGap(49, 49, 49)
+                                .addComponent(B_EditarCajero)))))
+                .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(ndiez, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,7 +285,9 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                     .addComponent(B_Volver))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -290,17 +308,22 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_B_EditarCajeroActionPerformed
 
     private void B_AgregarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarCajeroActionPerformed
-        /*
-        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
-            salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
+        
+        int diez = Integer.parseInt(ndiez.getText());
+        int veinte = Integer.parseInt(nveinte.getText());
+        int cincuenta = Integer.parseInt(ncincuenta.getText());
+        int cien =Integer.parseInt(ncien.getText());
+        
+        if (ndiez.getText().isEmpty() || nveinte.getText().isEmpty() || ncincuenta.getText().isEmpty() || ncien.getText().isEmpty()) {
+            salidaCajero.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
-            boolean agre = c.insertar(nombre.getText(), apellido.getText(), telefono.getText(), direccion.getText(), email.getText());
+            boolean agre = ca.agregarCajero(diez, veinte, cincuenta, cien);
             if (agre) {
-                salida.setText("El contacto se ha agregado correctamente.");
+                salidaCajero.setText("El cajero se ha agregado correctamente.");
             } else {
-                salida.setText("Error agregando contacto.");
+                salidaCajero.setText("Error agregando contacto.");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_AgregarCajeroActionPerformed
 
     private void B_ConsultarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarCajeroActionPerformed
@@ -421,11 +444,15 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField ncien;
     private javax.swing.JTextField ncincuenta;
     private javax.swing.JTextField ndiez;
     private javax.swing.JTextField nveinte;
     private javax.swing.JTextField nveinte1;
+    private javax.swing.JTextArea salida;
+    private javax.swing.JTextArea salidaCajero;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

@@ -67,7 +67,7 @@ public class CConsultas_Administracion {
                         resultado.getString("apellido"),
                         resultado.getString("telefono"),
                         resultado.getString("ciudad"),
-                        resultado.getString("ncuenta"),
+                        resultado.getInt("ncuenta"),
                         resultado.getDouble("saldo"),
                         resultado.getInt("estado")
                 );
@@ -79,36 +79,6 @@ public class CConsultas_Administracion {
         } catch (SQLException ex) {
             System.out.println("Error en el sql");
             return null;
-        }
-    }
-//------------------------------------------------------------------------------
-    public boolean ingresarBilletes(Connection con, int ndiez, int nveinte, int ncincuenta, int ncien) {
-        this.con = con;
-        query = "INSERT INTO cajeros (ndiez,nveinte,ncincuenta,ncien) VALUES ('" + ndiez + "','" + nveinte + "','" + ncincuenta + "','" + ncien + "');";
-        try {
-            //preparo la consulta
-            PreparedStatement preparar = con.prepareStatement(query);
-            //ejecuto la consulta luego de prepararla
-            preparar.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            System.out.println("Error en el sql");
-            return false;
-        }
-    }
-//------------------------------------------------------------------------------
-    public boolean ingresarCliente(Connection con, String nombre, String apellido, String telefono, String ciudad, String ncuenta, double saldo) {
-        this.con = con;
-        query = "INSERT INTO datos(id,nombres,apellidos,telefono,ciudad,ncuenta,saldo) VALUES (null,'" + nombre + "','" + apellido + "','" + telefono + "','" + ciudad + "','" + ncuenta + "','" + saldo + "');";
-        try {
-            //preparo la consulta
-            PreparedStatement preparar = con.prepareStatement(query);
-            //ejecuto la consulta luego de prepararla
-            preparar.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            System.out.println("Error en el sql");
-            return false;
         }
     }
 //------------------------------------------------------------------------------
@@ -126,16 +96,21 @@ public class CConsultas_Administracion {
             return false;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+//------------------------------------------------------------------------------
+    public boolean agregarClientes(Connection con, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
+        this.con = con;
+        query = "INSERT INTO clientes(id,nombre,apellido,telefono,ciudad,ncuenta,saldo,estado) VALUES (null,'" + nombre + "' , '" + apellido + "' , '" + telefono + "' , '" + ciudad + "' , "+ ncuenta +" , " + saldo + " , 0  );";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error en el sql");
+            return false;
+        }
+    }
     
     
 }// fin

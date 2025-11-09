@@ -3,29 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+
 import controlador.CControlador_Administracion;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.CCliente;
 import vista.interfazAdministrarCajeros;
 import vista.interfazPrincipal;
+
 /**
  *
  * @author tinit
  */
 public class interfazAdministracion extends javax.swing.JFrame {
-    
+
     // Modelo para manipular la tabla
     DefaultTableModel modelo;
     CControlador_Administracion c = new CControlador_Administracion();
-    
-    
+
     /**
      * Creates new form interfazAdministracion
      */
     public interfazAdministracion() {
         initComponents();
-        
+
         //inicio el modelo para manipular la tabla
         modelo = (DefaultTableModel) tabla.getModel();
 
@@ -49,7 +50,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
         B_BuscarPorNombre = new javax.swing.JButton();
         L_Id = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
-        direccion = new javax.swing.JTextField();
+        ciudad = new javax.swing.JTextField();
         B_BuscarPorID = new javax.swing.JButton();
         B_AgregarCliente = new javax.swing.JButton();
         B_ConsultarCliente = new javax.swing.JButton();
@@ -93,9 +94,9 @@ public class interfazAdministracion extends javax.swing.JFrame {
             }
         });
 
-        direccion.addActionListener(new java.awt.event.ActionListener() {
+        ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionActionPerformed(evt);
+                ciudadActionPerformed(evt);
             }
         });
 
@@ -282,7 +283,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(L_Dirección)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -341,7 +342,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(L_Dirección)
-                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -378,9 +379,9 @@ public class interfazAdministracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
-    private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
+    private void ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_direccionActionPerformed
+    }//GEN-LAST:event_ciudadActionPerformed
 
     private void B_BuscarPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorIDActionPerformed
         /*ArrayList<CContacto> lista6 = new ArrayList<>();
@@ -405,17 +406,20 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_B_BuscarPorIDActionPerformed
 
     private void B_AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarClienteActionPerformed
-        /*
-        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
+        
+        double sald = Integer.parseInt(saldo.getText());
+        int cuenta = Integer.parseInt(ncuenta.getText());
+        
+        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || ciudad.getText().isEmpty() || ncuenta.getText().isEmpty() || saldo.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
-            boolean agre = c.insertar(nombre.getText(), apellido.getText(), telefono.getText(), direccion.getText(), email.getText());
+            boolean agre = c.agregarClientes(nombre.getText(), apellido.getText(), telefono.getText(), ciudad.getText(), cuenta, sald);
             if (agre) {
-                salida.setText("El contacto se ha agregado correctamente.");
+                salida.setText("El cliente se ha agregado correctamente.");
             } else {
                 salida.setText("Error agregando contacto.");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_AgregarClienteActionPerformed
 
     private void B_ConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarClienteActionPerformed
@@ -478,7 +482,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_saldoActionPerformed
 
     private void B_AdministrarCajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AdministrarCajerosActionPerformed
-        interfazAdministrarCajeros inter=new interfazAdministrarCajeros();
+        interfazAdministrarCajeros inter = new interfazAdministrarCajeros();
         inter.setVisible(true);
         dispose();
     }//GEN-LAST:event_B_AdministrarCajerosActionPerformed
@@ -544,7 +548,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
     private javax.swing.JLabel L_NumeroCuenta1;
     private javax.swing.JLabel L_Telefono;
     private javax.swing.JTextField apellido;
-    private javax.swing.JTextField direccion;
+    private javax.swing.JTextField ciudad;
     private javax.swing.JTextField id;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -14,7 +14,7 @@ public class CCliente {
     String apellido;
     String telefono;
     String ciudad;
-    String ncuenta;
+    int ncuenta;
     double saldo;
     int estado;
 
@@ -22,7 +22,7 @@ public class CCliente {
 
     }
 
-    public CCliente(int id, String nombre, String apellido, String telefono, String ciudad, String ncuenta, double saldo, int estado) {
+    public CCliente(int id, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo, int estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -53,7 +53,7 @@ public class CCliente {
         return ciudad;
     }
 
-    public String getNcuenta() {
+    public int getNcuenta() {
         return ncuenta;
     }
 
