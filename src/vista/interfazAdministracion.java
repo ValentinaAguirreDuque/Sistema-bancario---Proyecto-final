@@ -435,16 +435,17 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_B_ConsultarClienteActionPerformed
 
     private void B_BorrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarContactoActionPerformed
-        /*if (telefono.getText().isEmpty()) {
+        
+        if (telefono.getText().isEmpty()) {
             salida.setText("No se ha ingresado un teléfono ");
         } else {
-            boolean borr = c.borrar(telefono.getText());
+            boolean borr = c.borrarCliente(telefono.getText());
             if (borr) {
                 salida.setText("El contacto se ha borrado correctamente.");
             } else {
                 salida.setText("Error borrando contacto.");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_BorrarContactoActionPerformed
 
     private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed

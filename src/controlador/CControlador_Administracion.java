@@ -21,6 +21,7 @@ public class CControlador_Administracion {
     public CControlador_Administracion() {
     }
 //------------------------------------------------------------------------------
+
     public ArrayList<CCajero> consultarCajero() {
         ArrayList<CCajero> lista = new ArrayList<>();
         conecta = con.conectar();
@@ -33,6 +34,7 @@ public class CControlador_Administracion {
         }
     }
 //------------------------------------------------------------------------------
+
     public ArrayList<CCliente> consultarClientes() {
         ArrayList<CCliente> lista1 = new ArrayList<>();
         conecta = con.conectar();
@@ -45,16 +47,33 @@ public class CControlador_Administracion {
         }
     }
 //------------------------------------------------------------------------------
-    public boolean agregarCajero (int ndiez, int nveinte, int ncincuenta, int ncien) {
+
+    public boolean agregarCajero(int ndiez, int nveinte, int ncincuenta, int ncien) {
         conecta = con.conectar();
         boolean bandera = consulta.agregarCajero(conecta, ndiez, nveinte, ncincuenta, ncien);
         con.desconectar(conecta);
         return bandera;
     }
 //------------------------------------------------------------------------------
-    public boolean agregarClientes (String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
+
+    public boolean agregarClientes(String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
         conecta = con.conectar();
         boolean bandera = consulta.agregarClientes(conecta, nombre, apellido, telefono, ciudad, ncuenta, saldo);
+        con.desconectar(conecta);
+        return bandera;
+    }
+//------------------------------------------------------------------------------
+
+    public boolean borrarCajero(int idCajero) {
+        conecta = con.conectar();
+        boolean bandera = consulta.borrarCajero(conecta, idCajero);
+        con.desconectar(conecta);
+        return bandera;
+    }
+//------------------------------------------------------------------------------ 
+    public boolean borrarCliente(String telefono) {
+        conecta = con.conectar();
+        boolean bandera = consulta.borrarCliente(conecta, telefono);
         con.desconectar(conecta);
         return bandera;
     }
@@ -63,8 +82,5 @@ public class CControlador_Administracion {
     
     
     
-    
-    
-    
-    
+
 } // Fin

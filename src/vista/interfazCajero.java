@@ -26,21 +26,377 @@ public class interfazCajero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        B_N2 = new javax.swing.JButton();
+        B_LIMPIAR = new javax.swing.JButton();
+        B_N3 = new javax.swing.JButton();
+        B_N4 = new javax.swing.JButton();
+        B_N5 = new javax.swing.JButton();
+        B_N6 = new javax.swing.JButton();
+        B_N7 = new javax.swing.JButton();
+        B_N8 = new javax.swing.JButton();
+        B_N9 = new javax.swing.JButton();
+        L_CajeroAutomático = new javax.swing.JLabel();
+        B_ENTER = new javax.swing.JButton();
+        TF_Imprimir = new javax.swing.JTextField();
+        B_CORREGIR = new javax.swing.JButton();
+        B_N1 = new javax.swing.JButton();
+        B_N0 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        B_N2.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N2.setText("2");
+        B_N2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N2ActionPerformed(evt);
+            }
+        });
+
+        B_LIMPIAR.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_LIMPIAR.setText("LIMPIAR");
+        B_LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_LIMPIARActionPerformed(evt);
+            }
+        });
+
+        B_N3.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N3.setText("3");
+        B_N3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N3ActionPerformed(evt);
+            }
+        });
+
+        B_N4.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N4.setText("4");
+        B_N4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N4ActionPerformed(evt);
+            }
+        });
+
+        B_N5.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N5.setText("5");
+        B_N5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N5ActionPerformed(evt);
+            }
+        });
+
+        B_N6.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N6.setText("6");
+        B_N6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N6ActionPerformed(evt);
+            }
+        });
+
+        B_N7.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N7.setText("7");
+        B_N7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N7ActionPerformed(evt);
+            }
+        });
+
+        B_N8.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N8.setText("8");
+        B_N8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N8ActionPerformed(evt);
+            }
+        });
+
+        B_N9.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N9.setText("9");
+        B_N9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N9ActionPerformed(evt);
+            }
+        });
+
+        L_CajeroAutomático.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 36)); // NOI18N
+        L_CajeroAutomático.setText("Cajero Automatico");
+
+        B_ENTER.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_ENTER.setText("ENTER");
+        B_ENTER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_ENTERActionPerformed(evt);
+            }
+        });
+
+        TF_Imprimir.setEditable(false);
+        TF_Imprimir.setColumns(2);
+        TF_Imprimir.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 14)); // NOI18N
+
+        B_CORREGIR.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_CORREGIR.setText("CORREGIR");
+        B_CORREGIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_CORREGIRActionPerformed(evt);
+            }
+        });
+
+        B_N1.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N1.setText("1");
+        B_N1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N1ActionPerformed(evt);
+            }
+        });
+
+        B_N0.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 18)); // NOI18N
+        B_N0.setText("0");
+        B_N0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_N0ActionPerformed(evt);
+            }
+        });
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Denominacion ", "Billetes disponibles", "Valor total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(L_CajeroAutomático))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TF_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(B_N4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(B_N7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(B_N0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_N8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_N5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(B_N3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_N6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_N9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(B_ENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_CORREGIR, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                            .addComponent(B_LIMPIAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(L_CajeroAutomático)
+                .addGap(28, 28, 28)
+                .addComponent(TF_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(B_N3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(B_ENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(B_CORREGIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_N6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_N4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_N5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(B_N9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_N8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_N7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B_LIMPIAR, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(B_N0, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void B_N2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N2ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "2");
+    }//GEN-LAST:event_B_N2ActionPerformed
+
+    private void B_LIMPIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_LIMPIARActionPerformed
+        TF_Imprimir.setText("");
+    }//GEN-LAST:event_B_LIMPIARActionPerformed
+
+    private void B_N3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N3ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "3");
+    }//GEN-LAST:event_B_N3ActionPerformed
+
+    private void B_N4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N4ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "4");
+    }//GEN-LAST:event_B_N4ActionPerformed
+
+    private void B_N5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N5ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "5");
+    }//GEN-LAST:event_B_N5ActionPerformed
+
+    private void B_N6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N6ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "6");
+    }//GEN-LAST:event_B_N6ActionPerformed
+
+    private void B_N7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N7ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "7");
+    }//GEN-LAST:event_B_N7ActionPerformed
+
+    private void B_N8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N8ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "8");
+    }//GEN-LAST:event_B_N8ActionPerformed
+
+    private void B_N9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N9ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "9");
+    }//GEN-LAST:event_B_N9ActionPerformed
+
+    private void B_ENTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ENTERActionPerformed
+
+        /*String montoString = TF_Imprimir.getText();
+
+        int montoDeseado = Integer.parseInt(montoString);
+
+        // CÓDIGO SI NO HAY UN MONTO INGRESADO
+        if (montoString.isEmpty()) {
+            TF_Imprimir.setText("ERROR: No hay un monto ingresado. Ingrese un monto");
+        } // Fin if
+
+        // VALIDACIONES
+        if (montoDeseado < 10000 || montoDeseado > 1000000) {
+            TF_Imprimir.setText("ERROR: Monto fuera de rango [10.000 Y 1´000.000]");
+        } // Fin if
+
+        if (montoDeseado % 10 != 0) {
+            TF_Imprimir.setText("Error: Ingrese un monto multiplo de 10");
+        } // Fin if
+
+        // CÓDIGO DE LA LÓGICA DE DISPENSACIÓN DE BILLETES
+        HashMap<Integer, Integer> billetesADispensar = new HashMap<>();
+        int montoRestante = montoDeseado;
+
+        // PARA SACAR 50.000
+        if (montoDeseado == 50000) {
+            // Regla especial para 50.000: dos de 20.000 y uno de 10.000
+            if (billetes.getOrDefault(20000, 0) >= 2 && billetes.getOrDefault(10000, 0) >= 1) {
+                billetesADispensar.put(20000, 2);
+                billetesADispensar.put(10000, 1);
+                montoRestante = 0;
+            } // Fin if
+
+            //PARA SACAR 100.000 CON SENCILLA
+        } /*else if (montoDeseado == 100000) {
+            // Regla especial para 100.000: uno de 100.000, uno de 50.000 y dos de 20.000
+            if (billetes.getOrDefault(10000, 0) >= 1 && billetes.getOrDefault(50000, 0) >= 1 && billetes.getOrDefault(20000, 0) >= 2) {
+                billetesADispensar.put(10000, 1);
+                billetesADispensar.put(50000, 1);
+                billetesADispensar.put(20000, 2);
+                montoRestante = 0;
+            }// Fin if
+
+            // PARA SACAR MAS DE 100.000 Y QUE TODAVÍA ENTREGUE SENCILLA
+        }   else if (montoDeseado > 100000) {
+            if (billetes.getOrDefault(50000, 0) >= 1 && billetes.getOrDefault(20000, 0) >= 2 && billetes.getOrDefault(10000, 0) >= 1) {
+                billetesADispensar.put(50000, 1);
+                billetesADispensar.put(20000, 2);
+                billetesADispensar.put(10000, 1);
+                montoRestante -= 100000;
+            } // Fin if
+        } // Fin else if
+
+        // PARA SACAR LA MENOR CANTIDAD DE BILLETES
+        for (int denominacion : denominaciones) {
+            if (montoRestante > 0) {
+                int cantidadNecesaria = montoRestante / denominacion;
+                int cantidadDisponible = billetes.getOrDefault(denominacion, 0) - billetesADispensar.getOrDefault(denominacion, 0);
+                if (cantidadDisponible > 0) {
+                    int cantidadATomar = Math.min(cantidadNecesaria, cantidadDisponible);
+                    if (cantidadATomar > 0) {
+                        billetesADispensar.put(denominacion, billetesADispensar.getOrDefault(denominacion, 0) + cantidadATomar);
+                        montoRestante -= cantidadATomar * denominacion;
+                    } // Fin if
+                } // Fin if
+            } // Fin if
+        } // Fin for
+
+        // COMPROBAR LA CORRECTA DISPENSION DE BILLETES Y ACTUALIZAR LA CANTIDAD DISPONIBLE
+        if (montoRestante == 0) {
+            TF_Imprimir.setText("Su retiro de " + String.format("%,d", montoDeseado) + " fue exitoso! Se entregaron: ");
+            // el ("%,d") sirve para denotar los decimales
+            for (int denominacion : denominaciones) {
+                int cantidadEntregada = billetesADispensar.getOrDefault(denominacion, 0);
+                if (cantidadEntregada > 0) {
+                    billetes.put(denominacion, billetes.get(denominacion) - cantidadEntregada);
+                    TF_Imprimir.setText(TF_Imprimir.getText() + (cantidadEntregada + " Billete(s) de " + String.format("%,d", denominacion) + " - "));
+                    // el ("%,d") sirve para denotar los decimales
+                } // Fin if
+            } //fin for
+
+            // SI LA DESPENCIÓN DE BILLETES FALLA POR CANTIDAD DE BILLETES DISPONIBLES
+        } else {
+            TF_Imprimir.setText("ERROR: El cajero no tiene billetes suficientes para el monto solicitado.");
+        } // Fin else */
+    }//GEN-LAST:event_B_ENTERActionPerformed
+
+    private void B_CORREGIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CORREGIRActionPerformed
+        /*String corregir = TF_Imprimir.getText();
+
+        if (corregir.length() > 0) {
+            String corregido = corregir.substring(0, corregir.length() - 1);//crea una nueva cadena a partir de una existente.
+            TF_Imprimir.setText(corregido);
+        } //  Fin if*/
+    }//GEN-LAST:event_B_CORREGIRActionPerformed
+
+    private void B_N1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N1ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "1");
+    }//GEN-LAST:event_B_N1ActionPerformed
+
+    private void B_N0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N0ActionPerformed
+        TF_Imprimir.setText(TF_Imprimir.getText() + "0");
+    }//GEN-LAST:event_B_N0ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +434,22 @@ public class interfazCajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_CORREGIR;
+    private javax.swing.JButton B_ENTER;
+    private javax.swing.JButton B_LIMPIAR;
+    private javax.swing.JButton B_N0;
+    private javax.swing.JButton B_N1;
+    private javax.swing.JButton B_N2;
+    private javax.swing.JButton B_N3;
+    private javax.swing.JButton B_N4;
+    private javax.swing.JButton B_N5;
+    private javax.swing.JButton B_N6;
+    private javax.swing.JButton B_N7;
+    private javax.swing.JButton B_N8;
+    private javax.swing.JButton B_N9;
+    private javax.swing.JLabel L_CajeroAutomático;
+    private javax.swing.JTextField TF_Imprimir;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

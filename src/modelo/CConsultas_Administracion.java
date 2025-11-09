@@ -50,6 +50,7 @@ public class CConsultas_Administracion {
         }
     }
 //------------------------------------------------------------------------------
+
     public ArrayList<CCliente> consultarClientes(Connection con) {
         this.con = con;
         query = "SELECT * FROM clientes";
@@ -82,6 +83,7 @@ public class CConsultas_Administracion {
         }
     }
 //------------------------------------------------------------------------------
+
     public boolean agregarCajero(Connection con, int ndiez, int nveinte, int ncincuenta, int ncien) {
         this.con = con;
         query = "INSERT INTO cajeros(id,ndiez,nveinte,ncincuenta,ncien,estado) VALUES (null," + ndiez + "," + nveinte + "," + ncincuenta + "," + ncien + ",0);";
@@ -97,9 +99,10 @@ public class CConsultas_Administracion {
         }
     }
 //------------------------------------------------------------------------------
+
     public boolean agregarClientes(Connection con, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
         this.con = con;
-        query = "INSERT INTO clientes(id,nombre,apellido,telefono,ciudad,ncuenta,saldo,estado) VALUES (null,'" + nombre + "' , '" + apellido + "' , '" + telefono + "' , '" + ciudad + "' , "+ ncuenta +" , " + saldo + " , 0  );";
+        query = "INSERT INTO clientes(id,nombre,apellido,telefono,ciudad,ncuenta,saldo,estado) VALUES (null,'" + nombre + "' , '" + apellido + "' , '" + telefono + "' , '" + ciudad + "' , " + ncuenta + " , " + saldo + " , 0  );";
         try {
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
@@ -111,6 +114,48 @@ public class CConsultas_Administracion {
             return false;
         }
     }
-    
-    
+//------------------------------------------------------------------------------
+
+    public boolean borrarCajero(Connection con, int idCajero) {
+        this.con = con;
+        query = "DELETE FROM cajeros WHERE id = '" + idCajero + "' ; ";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+
+            // Para verificar que si se haya realizado un cambio
+            if (preparar.executeUpdate() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error en el sql");
+            return false;
+        }
+    }
+//------------------------------------------------------------------------------
+    public boolean borrarCliente(Connection con, String telefono) {
+        this.con = con;
+        query = "DELETE FROM clientes WHERE telefono = '" + telefono + "' ; ";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+
+            // Para verificar que si se haya realizado un cambio
+            if (preparar.executeUpdate() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error en el sql");
+            return false;
+        }
+    }
+
 }// fin
