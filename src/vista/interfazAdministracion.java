@@ -6,6 +6,7 @@ package vista;
 
 import controlador.CControlador_Administracion;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.CCliente;
 import vista.interfazAdministrarCajeros;
@@ -353,6 +354,16 @@ public class interfazAdministracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Código para limpias los campos de texto
+    private void limpiar() {
+        nombre.setText("");
+        apellido.setText("");
+        telefono.setText("");
+        ciudad.setText("");
+        ncuenta.setText("");
+        saldo.setText("");
+    }
+
     private void B_BuscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreActionPerformed
         /*ArrayList<CContacto> lista4 = new ArrayList<>();
         lista4 = c.BuscarPorNombreInicial(nombre.getText());
@@ -406,16 +417,16 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_B_BuscarPorIDActionPerformed
 
     private void B_AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarClienteActionPerformed
-        
-        double sald = Integer.parseInt(saldo.getText());
-        int cuenta = Integer.parseInt(ncuenta.getText());
-        
+
         if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || ciudad.getText().isEmpty() || ncuenta.getText().isEmpty() || saldo.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
+            double sald = Integer.parseInt(saldo.getText()); // Se pone dentro del else para que no se le de un valor sin que se cumplan if.
+            int cuenta = Integer.parseInt(ncuenta.getText()); // Se pone dentro del else para que no se le de un valor sin que se cumplan if.
             boolean agre = c.agregarClientes(nombre.getText(), apellido.getText(), telefono.getText(), ciudad.getText(), cuenta, sald);
             if (agre) {
                 salida.setText("El cliente se ha agregado correctamente.");
+                limpiar();
             } else {
                 salida.setText("Error agregando contacto.");
             }
@@ -435,15 +446,22 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_B_ConsultarClienteActionPerformed
 
     private void B_BorrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarContactoActionPerformed
-        
-        if (telefono.getText().isEmpty()) {
-            salida.setText("No se ha ingresado un teléfono ");
-        } else {
-            boolean borr = c.borrarCliente(telefono.getText());
-            if (borr) {
-                salida.setText("El contacto se ha borrado correctamente.");
+
+        // Código para mostrar una ventana emergente de confirmación
+        int result = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar este cliente?", "Confirmar", JOptionPane.YES_NO_OPTION); // Buttons to display (e.g., Yes and No)
+
+        int ide = Integer.parseInt(id.getText());
+        if (result == JOptionPane.YES_OPTION) {
+            if (id.getText().isEmpty()) {
+                salida.setText("No se ha ingresado un ID ");
             } else {
-                salida.setText("Error borrando contacto.");
+                boolean borr = c.borrarCliente(ide);
+                if (borr) {
+                    salida.setText("El Cliente se ha borrado correctamente.");
+                    limpiar();
+                } else {
+                    salida.setText("Error borrando Cliente.");
+                }
             }
         }
     }//GEN-LAST:event_B_BorrarContactoActionPerformed
@@ -461,17 +479,21 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_telefonoActionPerformed
 
     private void B_EditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EditarClienteActionPerformed
-        /*
-        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
+
+        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || ciudad.getText().isEmpty() || ncuenta.getText().isEmpty() || saldo.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
-            boolean edit = c.editar(nombre.getText(), apellido.getText(), direccion.getText(), telefono.getText(), email.getText());
+            int id1 = Integer.parseInt(id.getText());
+            int cuenta = Integer.parseInt(ncuenta.getText());
+            double sald = Double.parseDouble(saldo.getText());
+            boolean edit = c.editarClientes(id1, nombre.getText(), apellido.getText(), ciudad.getText(), telefono.getText(), cuenta, sald);
             if (edit) {
-                salida.setText("El contacto se ha editado correctamente.");
+                salida.setText("El Cliente se ha editado correctamente.");
+                limpiar();
             } else {
-                salida.setText("Error editando contacto.");
+                salida.setText("Error editando Cliente.");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_EditarClienteActionPerformed
 
     private void ncuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ncuentaActionPerformed

@@ -6,6 +6,7 @@ package vista;
 
 import controlador.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.CCajero;
 
@@ -14,17 +15,17 @@ import modelo.CCajero;
  * @author tinit
  */
 public class interfazAdministrarCajeros extends javax.swing.JFrame {
-    
+
     // Modelo para manipular la tabla
     DefaultTableModel modelo;
     CControlador_Administracion ca = new CControlador_Administracion();
-    
+
     /**
      * Creates new form interfazAdministrarCajeros
      */
     public interfazAdministrarCajeros() {
         initComponents();
-        
+
         //inicio el modelo para manipular la tabla
         modelo = (DefaultTableModel) tabla.getModel();
 
@@ -34,6 +35,13 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
 
         // Color de las líneas
         tabla.setGridColor(java.awt.Color.BLACK);
+    }
+
+    private void limpiar() {
+        ndiez.setText("");
+        nveinte.setText("");
+        ncincuenta.setText("");
+        ncien.setText("");
     }
 
     /**
@@ -318,32 +326,39 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_EditarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EditarCajeroActionPerformed
-        /*
-        if (nombre.getText().isEmpty() || apellido.getText().isEmpty() || telefono.getText().isEmpty() || direccion.getText().isEmpty() || email.getText().isEmpty()) {
+
+        if (idCajero.getText().isEmpty() || ndiez.getText().isEmpty() || nveinte.getText().isEmpty() || ncincuenta.getText().isEmpty() || ncien.getText().isEmpty()) {
             salida.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
-            boolean edit = c.editar(nombre.getText(), apellido.getText(), direccion.getText(), telefono.getText(), email.getText());
+            int id1 = Integer.parseInt(idCajero.getText());
+            int diez = Integer.parseInt(ndiez.getText());
+            int veinte = Integer.parseInt(nveinte.getText());
+            int cincuenta = Integer.parseInt(ncincuenta.getText());
+            int cien = Integer.parseInt(ncien.getText());
+            boolean edit = ca.editarCajero(id1, diez, veinte, cincuenta, cien);
             if (edit) {
-                salida.setText("El contacto se ha editado correctamente.");
+                salida.setText("El Cajero se ha editado correctamente.");
+                limpiar();
             } else {
-                salida.setText("Error editando contacto.");
+                salida.setText("Error editando Cajero.");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_EditarCajeroActionPerformed
 
     private void B_AgregarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarCajeroActionPerformed
-        
+
         int diez = Integer.parseInt(ndiez.getText());
         int veinte = Integer.parseInt(nveinte.getText());
         int cincuenta = Integer.parseInt(ncincuenta.getText());
-        int cien =Integer.parseInt(ncien.getText());
-        
+        int cien = Integer.parseInt(ncien.getText());
+
         if (ndiez.getText().isEmpty() || nveinte.getText().isEmpty() || ncincuenta.getText().isEmpty() || ncien.getText().isEmpty()) {
             salidaCajero.setText("Los campos estan vacios o incompletos. Llene todos los campos. ");
         } else {
             boolean agre = ca.agregarCajero(diez, veinte, cincuenta, cien);
             if (agre) {
                 salidaCajero.setText("El cajero se ha agregado correctamente.");
+                limpiar();
             } else {
                 salidaCajero.setText("Error agregando contacto.");
             }
@@ -363,16 +378,18 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_B_ConsultarCajeroActionPerformed
 
     private void B_BorrarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarCajeroActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, "Esta seguro de borrar este Cajero?", "Confirmar", JOptionPane.YES_NO_OPTION); // Buttons to display (e.g., Yes and No)
+
         int id = Integer.parseInt(idCajero.getText());
-        
         if (idCajero.getText().isEmpty()) {
             salidaCajero.setText("No se ha ingresado un id ");
         } else {
             boolean borr = ca.borrarCajero(id);
             if (borr) {
-                salidaCajero.setText("El cajero se ha borrado correctamente.");
+                salidaCajero.setText("El Cajero se ha borrado correctamente.");
+                limpiar();
             } else {
-                salidaCajero.setText("Error borrando cajero.");
+                salidaCajero.setText("Error borrando Cajero.");
             }
         }
     }//GEN-LAST:event_B_BorrarCajeroActionPerformed

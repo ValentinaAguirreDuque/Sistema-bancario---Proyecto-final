@@ -137,9 +137,10 @@ public class CConsultas_Administracion {
         }
     }
 //------------------------------------------------------------------------------
-    public boolean borrarCliente(Connection con, String telefono) {
+
+    public boolean borrarCliente(Connection con, int id) {
         this.con = con;
-        query = "DELETE FROM clientes WHERE telefono = '" + telefono + "' ; ";
+        query = "DELETE FROM clientes WHERE id = '" + id + "' ; ";
         try {
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
@@ -157,5 +158,39 @@ public class CConsultas_Administracion {
             return false;
         }
     }
+//------------------------------------------------------------------------------
+
+    public boolean editarCajeros(Connection con, int idCajero, int ndiez, int nveinte, int ncincuenta, int ncien) {
+        this.con = con;
+        query = "UPDATE cajeros SET ndiez= '" + ndiez + "', nveine= '" + nveinte + "', ncincuenta= '" + ncincuenta + "', ncien= '" + ncien + "' where id='" + idCajero + "';s";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
+    }
+
+//------------------------------------------------------------------------------
+    public boolean editarClientes(Connection con, int id, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
+        this.con = con;
+        query = "UPDATE clientes SET nombre= '" + nombre + "' ,apellido= '" + apellido + "', telefono= '" + telefono + "', ciudad= '" + ciudad + "', ncuenta= '" + ncuenta + "', saldo= '" + saldo + "' where id='" + id + "';s";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+//------------------------------------------------------------------------------    
 
 }// fin

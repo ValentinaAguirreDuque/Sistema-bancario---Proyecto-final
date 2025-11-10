@@ -71,16 +71,28 @@ public class CControlador_Administracion {
         return bandera;
     }
 //------------------------------------------------------------------------------ 
-    public boolean borrarCliente(String telefono) {
+
+    public boolean borrarCliente(int id) {
         conecta = con.conectar();
-        boolean bandera = consulta.borrarCliente(conecta, telefono);
+        boolean bandera = consulta.borrarCliente(conecta, id);
         con.desconectar(conecta);
         return bandera;
     }
-    
-    
-    
-    
-    
+//------------------------------------------------------------------------------
+
+    public boolean editarCajero(int idCajero, int ndiez, int nveinte, int ncincuenta, int ncien) {
+        conecta = con.conectar();
+        boolean bandera = consulta.editarCajeros(conecta, idCajero, ndiez, nveinte, ncincuenta, ncien);
+        con.desconectar(conecta);
+        return bandera;
+    }
+//------------------------------------------------------------------------------
+
+    public boolean editarClientes(int id, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
+        conecta = con.conectar();
+        boolean bandera = consulta.editarClientes(conecta, id, nombre, apellido, telefono, ciudad, ncuenta, saldo);
+        con.desconectar(conecta);
+        return bandera;
+    }
 
 } // Fin
