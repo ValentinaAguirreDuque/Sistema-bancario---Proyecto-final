@@ -162,7 +162,7 @@ public class CConsultas_Administracion {
 
     public boolean editarCajeros(Connection con, int idCajero, int ndiez, int nveinte, int ncincuenta, int ncien) {
         this.con = con;
-        query = "UPDATE cajeros SET ndiez= '" + ndiez + "', nveine= '" + nveinte + "', ncincuenta= '" + ncincuenta + "', ncien= '" + ncien + "' where id='" + idCajero + "';s";
+        query = "UPDATE cajeros SET ndiez= '" + ndiez + "', nveinte= '" + nveinte + "', ncincuenta= '" + ncincuenta + "', ncien= '" + ncien + "' WHERE id='" + idCajero + "';";
         try {
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
@@ -179,7 +179,7 @@ public class CConsultas_Administracion {
 //------------------------------------------------------------------------------
     public boolean editarClientes(Connection con, int id, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
         this.con = con;
-        query = "UPDATE clientes SET nombre= '" + nombre + "' ,apellido= '" + apellido + "', telefono= '" + telefono + "', ciudad= '" + ciudad + "', ncuenta= '" + ncuenta + "', saldo= '" + saldo + "' where id='" + id + "';s";
+        query = "UPDATE clientes SET nombre= '" + nombre + "' ,apellido= '" + apellido + "', telefono= '" + telefono + "', ciudad= '" + ciudad + "', ncuenta= '" + ncuenta + "', saldo= '" + saldo + "' WHERE id='" + id + "';";
         try {
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
@@ -193,4 +193,38 @@ public class CConsultas_Administracion {
     }
 //------------------------------------------------------------------------------    
 
+    public CCliente buscarClienteID(Connection con, int id) {
+        this.con = con;
+        CCliente cliente = null;
+        query = "SELECT * FROM clientes where id='" + id + "'";
+
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                cliente = new CCliente(
+                        resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("apellido"),
+                        resultado.getString("telefono"),
+                        resultado.getString("ciudad"),
+                        resultado.getInt("ncuenta"),
+                        resultado.getDouble("saldo"),
+                        resultado.getInt("estado")
+                );
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return cliente;
+    }
+    
+    
+    
+    
+    
 }// fin

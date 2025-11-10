@@ -395,25 +395,23 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_ciudadActionPerformed
 
     private void B_BuscarPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorIDActionPerformed
-        /*ArrayList<CContacto> lista6 = new ArrayList<>();
-        lista6 = c.BuscarPorID(id.getText());
+        CCliente cliente = c.buscarClienteID(Integer.parseInt(id.getText()));
+        if (cliente != null) {
+            id.setText("" + cliente.getId()); // las dobles comillas son una conversión implícita.
+            nombre.setText(cliente.getNombre());
+            apellido.setText(cliente.getApellido());
+            telefono.setText(cliente.getTelefono());
+            ciudad.setText(cliente.getCiudad());
+            ncuenta.setText("" + cliente.getNcuenta());
+            saldo.setText("" + cliente.getSaldo());
+            
+            modelo.setRowCount(0);
+            modelo.addRow(new Object[]{cliente.getId(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getCiudad(), cliente.getNcuenta(), cliente.getSaldo()});
 
-        modelo.setRowCount(0);
-
-        if (id.getText().isEmpty()) {
-            salida.setText("El campo -ID- está vacío. Llene los campos");
+            salida.setText("ID: " + id.getText() + " encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
         } else {
-            boolean ide = false;
-            for (CContacto con : lista6) {
-                modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
-                ide = true;
-            }
-            if (ide) {
-                salida.setText("ID: " + id.getText() + " encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
-            } else {
-                salida.setText("No se encuentran ese ID. ");
-            }
-        }*/
+            salida.setText("No se encuentran ese ID. ");
+        }
     }//GEN-LAST:event_B_BuscarPorIDActionPerformed
 
     private void B_AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AgregarClienteActionPerformed
@@ -486,7 +484,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
             int id1 = Integer.parseInt(id.getText());
             int cuenta = Integer.parseInt(ncuenta.getText());
             double sald = Double.parseDouble(saldo.getText());
-            boolean edit = c.editarClientes(id1, nombre.getText(), apellido.getText(), ciudad.getText(), telefono.getText(), cuenta, sald);
+            boolean edit = c.editarClientes(id1, nombre.getText(), apellido.getText(), telefono.getText(), ciudad.getText(), cuenta, sald);
             if (edit) {
                 salida.setText("El Cliente se ha editado correctamente.");
                 limpiar();

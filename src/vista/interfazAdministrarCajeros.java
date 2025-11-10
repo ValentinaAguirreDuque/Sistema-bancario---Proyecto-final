@@ -337,10 +337,10 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
             int cien = Integer.parseInt(ncien.getText());
             boolean edit = ca.editarCajero(id1, diez, veinte, cincuenta, cien);
             if (edit) {
-                salida.setText("El Cajero se ha editado correctamente.");
+                salidaCajero.setText("El Cajero se ha editado correctamente.");
                 limpiar();
             } else {
-                salida.setText("Error editando Cajero.");
+                salidaCajero.setText("Error editando Cajero.");
             }
         }
     }//GEN-LAST:event_B_EditarCajeroActionPerformed

@@ -94,5 +94,18 @@ public class CControlador_Administracion {
         con.desconectar(conecta);
         return bandera;
     }
+//------------------------------------------------------------------------------    
+
+    public CCliente buscarClienteID(int id) {
+        CCliente cliente = null;
+        conecta = con.conectar();
+        if (conecta != null) {
+            cliente = consulta.buscarClienteID(conecta, id);
+            con.desconectar(conecta);
+            return cliente;
+        } else {
+            return null;
+        }
+    }
 
 } // Fin
