@@ -49,6 +49,24 @@ public class CCajero {
     public int getEstado() {
         return estado;
     }
+
+    public void setNdiez(int ndiez) {
+        this.ndiez = ndiez;
+    }
+
+    public void setNveinte(int nveinte) {
+        this.nveinte = nveinte;
+    }
+
+    public void setNcincuenta(int ncincuenta) {
+        this.ncincuenta = ncincuenta;
+    }
+
+    public void setNcien(int ncien) {
+        this.ncien = ncien;
+    }
+    
+    
     
     
     

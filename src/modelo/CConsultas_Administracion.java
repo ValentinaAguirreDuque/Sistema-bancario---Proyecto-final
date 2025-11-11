@@ -223,8 +223,8 @@ public class CConsultas_Administracion {
         return cliente;
     }
 //------------------------------------------------------------------------------
-    
-     public CCliente buscarClienteNombre(Connection con, String nombre) {
+
+    public CCliente buscarClienteNombre(Connection con, String nombre) {
         this.con = con;
         CCliente cliente = null;
         query = "SELECT * FROM clientes WHERE nombre='" + nombre + "'";
@@ -254,8 +254,8 @@ public class CConsultas_Administracion {
         return cliente;
     }
 //------------------------------------------------------------------------------
-     
-      public boolean consignar(Connection con, int id, double valor) {
+
+    public boolean consignar(Connection con, int id, double valor) {
         this.con = con;
         CCliente obj = this.buscarClienteID(con, id);
         obj.setSaldo(obj.getSaldo() + valor);
@@ -288,8 +288,59 @@ public class CConsultas_Administracion {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        } 
+        }
         return false;
+    }
+//------------------------------------------------------------------------------
+
+    public CCajero buscarCajeroID(Connection con, int idCajero) {
+        this.con = con;
+        CCajero cajero = null;
+        query = "SELECT * FROM cajeros WHERE id='" + idCajero + "'";
+
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                cajero = new CCajero(
+                        resultado.getInt("id"),
+                        resultado.getInt("ndiez"),
+                        resultado.getInt("nveinte"),
+                        resultado.getInt("ncincuenta"),
+                        resultado.getInt("ncien"),
+                        resultado.getInt("estado")
+                );
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return cajero;
+    }
+
+//------------------------------------------------------------------------------    
+    public boolean agregarBilletesCajero(Connection con, int idCajero, int valorDiez, int valorVeinte, int valorCincuenta, int valorCien) {
+        this.con = con;
+        CCajero obj = this.buscarCajeroID(con, idCajero);
+        obj.setNdiez(obj.getNdiez()+ valorDiez);
+        obj.setNveinte(obj.getNveinte()+ valorVeinte);
+        obj.setNcincuenta(obj.getNcincuenta()+ valorCincuenta);
+        obj.setNcien(obj.getNcien()+ valorCien);
+        
+        query = "UPDATE cajeros SET ndiez = '" + obj.getNdiez()+ "', nveinte = '" + obj.getNveinte()+ "', ncincuenta = '" + obj.getNcincuenta()+ "', ncien = '" + obj.getNcien()+ "' WHERE id='" + idCajero + "';";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
 }// fin
