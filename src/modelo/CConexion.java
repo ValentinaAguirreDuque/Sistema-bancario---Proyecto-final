@@ -14,7 +14,7 @@ public class CConexion {
    String usuario="valentina";
    String contrasena="#3Programacion3";
    String url="jdbc:mysql://72.167.84.254/banco";
-   
+  
    public CConexion(){
        
    }

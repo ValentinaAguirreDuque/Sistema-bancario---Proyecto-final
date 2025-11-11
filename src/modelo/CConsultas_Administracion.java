@@ -196,7 +196,7 @@ public class CConsultas_Administracion {
     public CCliente buscarClienteID(Connection con, int id) {
         this.con = con;
         CCliente cliente = null;
-        query = "SELECT * FROM clientes where id='" + id + "'";
+        query = "SELECT * FROM clientes WHERE id='" + id + "'";
 
         try {
             //preparo la consulta
@@ -222,9 +222,74 @@ public class CConsultas_Administracion {
         }
         return cliente;
     }
+//------------------------------------------------------------------------------
     
-    
-    
-    
-    
+     public CCliente buscarClienteNombre(Connection con, String nombre) {
+        this.con = con;
+        CCliente cliente = null;
+        query = "SELECT * FROM clientes WHERE nombre='" + nombre + "'";
+
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                cliente = new CCliente(
+                        resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("apellido"),
+                        resultado.getString("telefono"),
+                        resultado.getString("ciudad"),
+                        resultado.getInt("ncuenta"),
+                        resultado.getDouble("saldo"),
+                        resultado.getInt("estado")
+                );
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return cliente;
+    }
+//------------------------------------------------------------------------------
+     
+      public boolean consignar(Connection con, int id, double valor) {
+        this.con = con;
+        CCliente obj = this.buscarClienteID(con, id);
+        obj.setSaldo(obj.getSaldo() + valor);
+        query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "' WHERE id='" + id + "';";
+        try {
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            preparar.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+//------------------------------------------------------------------------------    
+
+    public boolean retirar(Connection con, int id, double valor) {
+        this.con = con;
+        CCliente obj = this.buscarClienteID(con, id);
+        if (obj.getSaldo() >= valor) {
+            obj.setSaldo(obj.getSaldo() - valor);
+            query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "' WHERE id='" + id + "';";
+            try {
+                //preparo la consulta
+                PreparedStatement preparar = con.prepareStatement(query);
+                //ejecuto la consulta luego de prepararla
+                preparar.executeUpdate();
+                return true;
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } 
+        return false;
+    }
+
 }// fin

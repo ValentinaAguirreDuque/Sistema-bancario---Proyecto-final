@@ -61,6 +61,10 @@ public class CCliente {
         return saldo;
     }
 
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     public int getEstado() {
         return estado;
     }

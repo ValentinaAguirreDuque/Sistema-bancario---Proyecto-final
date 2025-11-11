@@ -202,8 +202,18 @@ public class interfazAdministracion extends javax.swing.JFrame {
         L_NumeroCuenta1.setText("Saldo:");
 
         B_Consignar.setText("Consignar");
+        B_Consignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_ConsignarActionPerformed(evt);
+            }
+        });
 
         B_Retirar.setText("Retirar");
+        B_Retirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_RetirarActionPerformed(evt);
+            }
+        });
 
         B_AdministrarCajeros.setText("ADMINISTRAR CAJEROS");
         B_AdministrarCajeros.addActionListener(new java.awt.event.ActionListener() {
@@ -365,25 +375,20 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }
 
     private void B_BuscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreActionPerformed
-        /*ArrayList<CContacto> lista4 = new ArrayList<>();
-        lista4 = c.BuscarPorNombreInicial(nombre.getText());
-
-        modelo.setRowCount(0);
-
         if (nombre.getText().isEmpty()) {
-            salida.setText("El campo -Nombres- está vacío. Llene los campos");
+            salida.setText("El campo 'Nombre' esta vacío. Ingrese un nombre");
         } else {
-            boolean nomb = false;
-            for (CContacto con : lista4) {
-                modelo.addRow(new Object[]{con.getId(), con.getNombres(), con.getApellidos(), con.getTelefono(), con.getDireccion(), con.getEmail()});
-                nomb = true;
-            }
-            if (nomb) {
-                salida.setText("Listado de nombres con: " + nombre.getText() + "."); // si lo de arriba se hizo, devuelve la salida correcta
+            CCliente cliente = c.buscarClienteNombre(nombre.getText());
+            if (cliente != null) {
+
+                modelo.setRowCount(0);
+                modelo.addRow(new Object[]{cliente.getId(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getCiudad(), cliente.getNcuenta(), cliente.getSaldo()});
+
+                salida.setText("Los clientes de nombre: " + nombre.getText() + " se han encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
             } else {
-                salida.setText("No se encuentran ese nombre o iniciales. ");
+                salida.setText("No se encuentran ese nombre. ");
             }
-        }*/
+        }
     }//GEN-LAST:event_B_BuscarPorNombreActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
@@ -395,22 +400,27 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_ciudadActionPerformed
 
     private void B_BuscarPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorIDActionPerformed
-        CCliente cliente = c.buscarClienteID(Integer.parseInt(id.getText()));
-        if (cliente != null) {
-            id.setText("" + cliente.getId()); // las dobles comillas son una conversión implícita.
-            nombre.setText(cliente.getNombre());
-            apellido.setText(cliente.getApellido());
-            telefono.setText(cliente.getTelefono());
-            ciudad.setText(cliente.getCiudad());
-            ncuenta.setText("" + cliente.getNcuenta());
-            saldo.setText("" + cliente.getSaldo());
-            
-            modelo.setRowCount(0);
-            modelo.addRow(new Object[]{cliente.getId(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getCiudad(), cliente.getNcuenta(), cliente.getSaldo()});
-
-            salida.setText("ID: " + id.getText() + " encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
+        if (id.getText().isEmpty()) {
+            salida.setText("El campo 'ID' esta vacío. Ingrese un ID");
         } else {
-            salida.setText("No se encuentran ese ID. ");
+            CCliente cliente = c.buscarClienteID(Integer.parseInt(id.getText()));
+            if (cliente != null) {
+                // Con este código aparece el resultado en los campos de texto y así no se tiene que volver a escribir el cliente
+                id.setText("" + cliente.getId()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
+                nombre.setText(cliente.getNombre());
+                apellido.setText(cliente.getApellido());
+                telefono.setText(cliente.getTelefono());
+                ciudad.setText(cliente.getCiudad());
+                ncuenta.setText("" + cliente.getNcuenta()); // las dobles comillas son una conversión implícita = Integer.parseInt(ncuenta.getText())
+                saldo.setText("" + cliente.getSaldo()); // las dobles comillas son una conversión implícita = Integer.parseInt(saldo.getText())
+
+                modelo.setRowCount(0);
+                modelo.addRow(new Object[]{cliente.getId(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getCiudad(), cliente.getNcuenta(), cliente.getSaldo()});
+
+                salida.setText("ID: " + id.getText() + " encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
+            } else {
+                salida.setText("No se encuentran ese ID. ");
+            }
         }
     }//GEN-LAST:event_B_BuscarPorIDActionPerformed
 
@@ -432,6 +442,7 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_B_AgregarClienteActionPerformed
 
     private void B_ConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsultarClienteActionPerformed
+        limpiar();
         ArrayList<CCliente> lista1 = new ArrayList<>();
         lista1 = c.consultarClientes();
 
@@ -514,6 +525,41 @@ public class interfazAdministracion extends javax.swing.JFrame {
         p.setVisible(true);
         dispose();
     }//GEN-LAST:event_B_VolverActionPerformed
+
+    private void B_ConsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsignarActionPerformed
+        if (saldo.getText().isEmpty()) {
+            salida.setText("El campo 'Saldo' está vacío. Llene el campo.");
+        } else {
+
+            int id1 = Integer.parseInt(id.getText());
+            double valor = Double.parseDouble(saldo.getText());
+            boolean consig = c.consignar(id1, valor);
+
+            if (consig) {
+                salida.setText("Al cliente se le han consignado: " + valor);
+                limpiar();
+            } else {
+                salida.setText("Error consignando.");
+            }
+        }
+    }//GEN-LAST:event_B_ConsignarActionPerformed
+
+    private void B_RetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RetirarActionPerformed
+        if (saldo.getText().isEmpty()) {
+            salida.setText("Los campos están vacíos o incompletos. Llene todos los campos.");
+        } else {
+            int id1 = Integer.parseInt(id.getText());
+            double valor = Double.parseDouble(saldo.getText());
+            boolean consig = c.retirar(id1, valor);
+
+            if (consig) {
+                salida.setText("Al cliente se le han retirado: " + valor);
+                limpiar();
+            } else {
+                salida.setText("Error retirando. El valor a retirar supera el valor disponible.");
+            }
+        }
+    }//GEN-LAST:event_B_RetirarActionPerformed
 
     /**
      * @param args the command line arguments

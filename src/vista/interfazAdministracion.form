@@ -373,11 +373,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consignar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_ConsignarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="B_Retirar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retirar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_RetirarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="B_AdministrarCajeros">
       <Properties>

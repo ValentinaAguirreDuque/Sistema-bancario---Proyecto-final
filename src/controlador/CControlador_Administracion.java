@@ -107,5 +107,34 @@ public class CControlador_Administracion {
             return null;
         }
     }
+//------------------------------------------------------------------------------    
+
+    public CCliente buscarClienteNombre(String nombre) {
+        CCliente cliente = null;
+        conecta = con.conectar();
+        if (conecta != null) {
+            cliente = consulta.buscarClienteNombre(conecta, nombre);
+            con.desconectar(conecta);
+            return cliente;
+        } else {
+            return null;
+        }
+    }
+//------------------------------------------------------------------------------    
+
+    public boolean consignar(int id, double valor) {
+        conecta = con.conectar();
+        boolean bandera = consulta.consignar(conecta, id, valor);
+        con.desconectar(conecta);
+        return bandera;
+    }
+//------------------------------------------------------------------------------    
+
+    public boolean retirar(int id, double valor) {
+        conecta = con.conectar();
+        boolean bandera = consulta.retirar(conecta, id, valor);
+        con.desconectar(conecta);
+        return bandera;
+    }
 
 } // Fin
