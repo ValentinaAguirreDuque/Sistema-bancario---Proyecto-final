@@ -118,16 +118,28 @@ public class CConsultas_Administracion {
 
     public boolean borrarCajero(Connection con, int idCajero) {
         this.con = con;
-        query = "DELETE FROM cajeros WHERE id = '" + idCajero + "' ; ";
         try {
+            query = "SELECT estado FROM cajeros WHERE id=" + idCajero + ";";
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
             //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE cajeros SET estado=1 WHERE id=" + idCajero + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
 
-            // Para verificar que si se haya realizado un cambio
-            if (preparar.executeUpdate() > 0) {
-                return true;
+                    query = "DELETE FROM cajeros WHERE id=" + idCajero + ";";
+                    PreparedStatement preparar2 = con.prepareStatement(query);
+                    preparar2.executeUpdate();
+                    return true;
+                } else {
+                    System.out.println("El cajero está ocupado");
+                    return false;
+                }
             } else {
+                System.out.println("El cajero no existe");
                 return false;
             }
 
@@ -142,14 +154,26 @@ public class CConsultas_Administracion {
         this.con = con;
         query = "DELETE FROM clientes WHERE id = '" + id + "' ; ";
         try {
-            //preparo la consulta
+            query = "SELECT estado FROM clientes WHERE id=" + id + ";";
             PreparedStatement preparar = con.prepareStatement(query);
-            //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+            
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE clientes SET estado=1 WHERE id=" + id + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
 
-            // Para verificar que si se haya realizado un cambio
-            if (preparar.executeUpdate() > 0) {
-                return true;
-            } else {
+                    query = "DELETE FROM clientes WHERE id=" + id + ";";
+                    PreparedStatement preparar2 = con.prepareStatement(query);
+                    preparar2.executeUpdate();
+                    return true;
+                }else{
+                    System.out.println("El cliente está ocupado");
+                    return false;
+                }
+            }else{
+                System.out.println("EL cliente no existe");
                 return false;
             }
 
@@ -347,12 +371,12 @@ public class CConsultas_Administracion {
     public boolean quitarBilletesCajero(Connection con, int idCajero, int valorDiez, int valorVeinte, int valorCincuenta, int valorCien) {
         this.con = con;
         CCajero obj = this.buscarCajeroID(con, idCajero);
-        if (obj.getNdiez()>= valorDiez || obj.getNveinte()>= valorVeinte || obj.getNcincuenta()>= valorCincuenta || obj.getNcien()>= valorCien) {
-            obj.setNdiez(obj.getNdiez()- valorDiez);
-            obj.setNveinte(obj.getNveinte()- valorVeinte);
-            obj.setNcincuenta(obj.getNcincuenta()- valorCincuenta);
-            obj.setNcien(obj.getNcien()- valorCien);
-            query = "UPDATE cajeros SET ndiez = '" + obj.getNdiez()+ "', nveinte = '" + obj.getNveinte()+ "', ncincuenta = '" + obj.getNcincuenta()+ "', ncien = '" + obj.getNcien()+ "' WHERE id='" + idCajero + "';";
+        if (obj.getNdiez() >= valorDiez || obj.getNveinte() >= valorVeinte || obj.getNcincuenta() >= valorCincuenta || obj.getNcien() >= valorCien) {
+            obj.setNdiez(obj.getNdiez() - valorDiez);
+            obj.setNveinte(obj.getNveinte() - valorVeinte);
+            obj.setNcincuenta(obj.getNcincuenta() - valorCincuenta);
+            obj.setNcien(obj.getNcien() - valorCien);
+            query = "UPDATE cajeros SET ndiez = '" + obj.getNdiez() + "', nveinte = '" + obj.getNveinte() + "', ncincuenta = '" + obj.getNcincuenta() + "', ncien = '" + obj.getNcien() + "' WHERE id='" + idCajero + "';";
             try {
                 //preparo la consulta
                 PreparedStatement preparar = con.prepareStatement(query);
