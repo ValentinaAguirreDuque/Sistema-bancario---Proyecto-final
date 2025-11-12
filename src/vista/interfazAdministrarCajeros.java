@@ -80,7 +80,6 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         L_Billetes10 = new javax.swing.JLabel();
         L_Billetes100 = new javax.swing.JLabel();
         L_IdCajero = new javax.swing.JLabel();
-        B_BuscarCajeroID = new javax.swing.JButton();
 
         jButton3.setText("Billetes 20.000");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +131,11 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         });
 
         B_RetirarCajero.setText("Retirar del cajero");
+        B_RetirarCajero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_RetirarCajeroActionPerformed(evt);
+            }
+        });
 
         B_BorrarCajero.setText("Borrar cajero");
         B_BorrarCajero.addActionListener(new java.awt.event.ActionListener() {
@@ -207,13 +211,6 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
 
         L_IdCajero.setText("ID Cajero");
 
-        B_BuscarCajeroID.setText("Buscar ID Cajero");
-        B_BuscarCajeroID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_BuscarCajeroIDActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,10 +237,8 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                             .addComponent(B_AgregarCajero)
                             .addComponent(B_RetirarCajero))
                         .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(B_BorrarCajero)
-                            .addComponent(B_BuscarCajeroID))
-                        .addGap(65, 65, 65)
+                        .addComponent(B_BorrarCajero)
+                        .addGap(83, 83, 83)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(B_EditarCajero)
                             .addComponent(B_Volver))
@@ -307,8 +302,7 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_ConsignarCajero)
                     .addComponent(B_RetirarCajero)
-                    .addComponent(B_Volver)
-                    .addComponent(B_BuscarCajeroID))
+                    .addComponent(B_Volver))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -420,7 +414,7 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_B_VolverActionPerformed
 
     private void idCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCajeroActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_idCajeroActionPerformed
 
     private void B_ConsignarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConsignarCajeroActionPerformed
@@ -449,24 +443,31 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_B_ConsignarCajeroActionPerformed
 
-    private void B_BuscarCajeroIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarCajeroIDActionPerformed
-        if (idCajero.getText().isEmpty()) {
-            salida.setText("El campo 'ID' esta vacío. Ingrese un ID");
+    private void B_RetirarCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RetirarCajeroActionPerformed
+        if (ndiez.getText().isEmpty() || nveinte.getText().isEmpty() || ncincuenta.getText().isEmpty() || ncien.getText().isEmpty()) {
+            salida.setText("Los campos de billetes estan vacios. Llene los campos.");
         } else {
-            CCajero cajero = ca.buscarCajeroID(Integer.parseInt(idCajero.getText()));
-            if (cajero != null) {
-                // Con este código aparece el resultado en los campos de texto y así no se tiene que volver a escribir el cliente
-                idCajero.setText("" + cajero.getId()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
-                ndiez.setText("" + cajero.getNdiez()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
-                nveinte.setText("" + cajero.getNveinte()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
-                ncincuenta.setText("" + cajero.getNcincuenta()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
-                ncien.setText("" + cajero.getNcien()); // las dobles comillas son una conversión implícita = Integer.parseInt(id.getText())
-                
+
+            int id1 = Integer.parseInt(idCajero.getText());
+            int diez = Integer.parseInt(ndiez.getText());
+            int veinte = Integer.parseInt(nveinte.getText());
+            int cincuenta = Integer.parseInt(ncincuenta.getText());
+            int cien = Integer.parseInt(ncien.getText());
+            
+            boolean retir = ca.quitarBilletesCajero(id1, diez, veinte, cincuenta, cien );
+
+            if (retir) {
+                salidaCajero.setText("Se han sacado las siguientes cantidades de billetes:"
+                        + "\n10.000 = " + diez
+                        + "\n20.000 = " + veinte
+                        + "\n50.000 = " + cincuenta
+                        + "\n100.000 = " + cien);
+                limpiar();
             } else {
-                salida.setText("No se encuentran ese ID. ");
+                salidaCajero.setText("Error agregando billetes.");
             }
         }
-    }//GEN-LAST:event_B_BuscarCajeroIDActionPerformed
+    }//GEN-LAST:event_B_RetirarCajeroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,7 +507,6 @@ public class interfazAdministrarCajeros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_AgregarCajero;
     private javax.swing.JButton B_BorrarCajero;
-    private javax.swing.JButton B_BuscarCajeroID;
     private javax.swing.JButton B_ConsignarCajero;
     private javax.swing.JButton B_ConsultarCajero;
     private javax.swing.JButton B_EditarCajero;

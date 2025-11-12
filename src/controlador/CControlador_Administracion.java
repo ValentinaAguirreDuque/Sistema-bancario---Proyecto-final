@@ -138,22 +138,17 @@ public class CControlador_Administracion {
     }
 //------------------------------------------------------------------------------
 
-    public CCajero buscarCajeroID(int idCajero) {
-        CCajero cajero = null;
-        conecta = con.conectar();
-        if (conecta != null) {
-            cajero = consulta.buscarCajeroID(conecta, idCajero);
-            con.desconectar(conecta);
-            return cajero;
-        } else {
-            return null;
-        }
-    }
-//------------------------------------------------------------------------------
-
     public boolean agregarBilletesCajero(int idCajero, int valorDiez, int valorVeinte, int valorCincuenta, int valorCien) {
         conecta = con.conectar();
         boolean bandera = consulta.agregarBilletesCajero(conecta, idCajero, valorDiez, valorVeinte, valorCincuenta, valorCien);
+        con.desconectar(conecta);
+        return bandera;
+    }
+//------------------------------------------------------------------------------
+
+    public boolean quitarBilletesCajero(int idCajero, int valorDiez, int valorVeinte, int valorCincuenta, int valorCien) {
+        conecta = con.conectar();
+        boolean bandera = consulta.quitarBilletesCajero(conecta, idCajero, valorDiez, valorVeinte, valorCincuenta, valorCien);
         con.desconectar(conecta);
         return bandera;
     }
