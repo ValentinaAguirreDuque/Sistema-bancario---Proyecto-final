@@ -4,6 +4,10 @@
  */
 package vista;
 
+import controlador.CControlador_Cajero;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tinit
@@ -13,8 +17,16 @@ public class interfazCajero extends javax.swing.JFrame {
     /**
      * Creates new form interfazCajero
      */
+    DefaultTableModel modelo;
+    CControlador_Cajero c = new CControlador_Cajero();
+
     public interfazCajero() {
         initComponents();
+
+        modelo = (DefaultTableModel) tabla.getModel();
+        tabla.setShowHorizontalLines(true);
+        tabla.setShowVerticalLines(true);
+        tabla.setGridColor(java.awt.Color.BLACK);
     }
 
     /**
@@ -43,6 +55,12 @@ public class interfazCajero extends javax.swing.JFrame {
         B_N0 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        L_IDCajero = new javax.swing.JLabel();
+        L_IDCliente = new javax.swing.JLabel();
+        idCajero = new javax.swing.JTextField();
+        idCliente = new javax.swing.JTextField();
+        L_NumeroCuenta = new javax.swing.JLabel();
+        ncuenta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +196,12 @@ public class interfazCajero extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
+        L_IDCajero.setText("ID Cajero: ");
+
+        L_IDCliente.setText("ID Cliente: ");
+
+        L_NumeroCuenta.setText("Numero Cuenta:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,29 +215,46 @@ public class interfazCajero extends javax.swing.JFrame {
                                 .addComponent(L_CajeroAutomático))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TF_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(B_N4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(B_N7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(B_N4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(B_N7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(50, 50, 50)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(B_N0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_N8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_N5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(L_IDCajero)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(idCajero, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(L_IDCliente)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(B_N0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_N8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_N5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(B_N3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_N6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_N9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(B_ENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(B_CORREGIR, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                            .addComponent(B_LIMPIAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(L_NumeroCuenta)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(ncuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(B_N3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_N6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_N9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(50, 50, 50)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(B_ENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_CORREGIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(B_LIMPIAR, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 9, Short.MAX_VALUE)
@@ -223,21 +264,30 @@ public class interfazCajero extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(16, 16, 16)
                 .addComponent(L_CajeroAutomático)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addComponent(TF_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_IDCajero)
+                    .addComponent(idCajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L_NumeroCuenta)
+                    .addComponent(ncuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_IDCliente)
+                    .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B_N3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(B_N2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(B_N3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(B_N1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(B_ENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(B_CORREGIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(B_N6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,10 +299,11 @@ public class interfazCajero extends javax.swing.JFrame {
                     .addComponent(B_N8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(B_N7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(B_LIMPIAR, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(30, 30, 30)
                 .addComponent(B_N0, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -295,99 +346,61 @@ public class interfazCajero extends javax.swing.JFrame {
     }//GEN-LAST:event_B_N9ActionPerformed
 
     private void B_ENTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ENTERActionPerformed
-
-        /*String montoString = TF_Imprimir.getText();
-
-        int montoDeseado = Integer.parseInt(montoString);
-
-        // CÓDIGO SI NO HAY UN MONTO INGRESADO
-        if (montoString.isEmpty()) {
-            TF_Imprimir.setText("ERROR: No hay un monto ingresado. Ingrese un monto");
-        } // Fin if
-
-        // VALIDACIONES
-        if (montoDeseado < 10000 || montoDeseado > 1000000) {
-            TF_Imprimir.setText("ERROR: Monto fuera de rango [10.000 Y 1´000.000]");
-        } // Fin if
-
-        if (montoDeseado % 10 != 0) {
-            TF_Imprimir.setText("Error: Ingrese un monto multiplo de 10");
-        } // Fin if
-
-        // CÓDIGO DE LA LÓGICA DE DISPENSACIÓN DE BILLETES
-        HashMap<Integer, Integer> billetesADispensar = new HashMap<>();
-        int montoRestante = montoDeseado;
-
-        // PARA SACAR 50.000
-        if (montoDeseado == 50000) {
-            // Regla especial para 50.000: dos de 20.000 y uno de 10.000
-            if (billetes.getOrDefault(20000, 0) >= 2 && billetes.getOrDefault(10000, 0) >= 1) {
-                billetesADispensar.put(20000, 2);
-                billetesADispensar.put(10000, 1);
-                montoRestante = 0;
-            } // Fin if
-
-            //PARA SACAR 100.000 CON SENCILLA
-        } /*else if (montoDeseado == 100000) {
-            // Regla especial para 100.000: uno de 100.000, uno de 50.000 y dos de 20.000
-            if (billetes.getOrDefault(10000, 0) >= 1 && billetes.getOrDefault(50000, 0) >= 1 && billetes.getOrDefault(20000, 0) >= 2) {
-                billetesADispensar.put(10000, 1);
-                billetesADispensar.put(50000, 1);
-                billetesADispensar.put(20000, 2);
-                montoRestante = 0;
-            }// Fin if
-
-            // PARA SACAR MAS DE 100.000 Y QUE TODAVÍA ENTREGUE SENCILLA
-        }   else if (montoDeseado > 100000) {
-            if (billetes.getOrDefault(50000, 0) >= 1 && billetes.getOrDefault(20000, 0) >= 2 && billetes.getOrDefault(10000, 0) >= 1) {
-                billetesADispensar.put(50000, 1);
-                billetesADispensar.put(20000, 2);
-                billetesADispensar.put(10000, 1);
-                montoRestante -= 100000;
-            } // Fin if
-        } // Fin else if
-
-        // PARA SACAR LA MENOR CANTIDAD DE BILLETES
-        for (int denominacion : denominaciones) {
-            if (montoRestante > 0) {
-                int cantidadNecesaria = montoRestante / denominacion;
-                int cantidadDisponible = billetes.getOrDefault(denominacion, 0) - billetesADispensar.getOrDefault(denominacion, 0);
-                if (cantidadDisponible > 0) {
-                    int cantidadATomar = Math.min(cantidadNecesaria, cantidadDisponible);
-                    if (cantidadATomar > 0) {
-                        billetesADispensar.put(denominacion, billetesADispensar.getOrDefault(denominacion, 0) + cantidadATomar);
-                        montoRestante -= cantidadATomar * denominacion;
-                    } // Fin if
-                } // Fin if
-            } // Fin if
-        } // Fin for
-
-        // COMPROBAR LA CORRECTA DISPENSION DE BILLETES Y ACTUALIZAR LA CANTIDAD DISPONIBLE
-        if (montoRestante == 0) {
-            TF_Imprimir.setText("Su retiro de " + String.format("%,d", montoDeseado) + " fue exitoso! Se entregaron: ");
-            // el ("%,d") sirve para denotar los decimales
-            for (int denominacion : denominaciones) {
-                int cantidadEntregada = billetesADispensar.getOrDefault(denominacion, 0);
-                if (cantidadEntregada > 0) {
-                    billetes.put(denominacion, billetes.get(denominacion) - cantidadEntregada);
-                    TF_Imprimir.setText(TF_Imprimir.getText() + (cantidadEntregada + " Billete(s) de " + String.format("%,d", denominacion) + " - "));
-                    // el ("%,d") sirve para denotar los decimales
-                } // Fin if
-            } //fin for
-
-            // SI LA DESPENCIÓN DE BILLETES FALLA POR CANTIDAD DE BILLETES DISPONIBLES
+        if (idCajero.getText().isEmpty() || idCliente.getText().isEmpty() || ncuenta.getText().isEmpty()) {
+            TF_Imprimir.setText("Los campos están vacios. Llénelos.");
         } else {
-            TF_Imprimir.setText("ERROR: El cajero no tiene billetes suficientes para el monto solicitado.");
-        } // Fin else */
+            int idcajero = Integer.parseInt(idCajero.getText().trim());
+            int idcliente = Integer.parseInt(idCliente.getText().trim());
+            int numcuenta = Integer.parseInt(ncuenta.getText().trim());
+            int dineroRetirar = Integer.parseInt(TF_Imprimir.getText().trim());
+
+            int retirar = c.retirarDinero(idcliente, numcuenta, idcajero, dineroRetirar);
+
+            if (retirar == 0) {
+                TF_Imprimir.setText("Error en el sql.");
+            } else if (retirar == 1) {
+                TF_Imprimir.setText(c.getResultadoCajero());
+
+                modelo.setRowCount(0);
+                HashMap<Integer, Integer> billetes = c.getCajero();
+
+                int[] valores = {10000, 20000, 50000, 100000};
+                for (int valor : valores) {
+                    if (billetes.containsKey(valor)) {
+                        modelo.addRow(new Object[]{valor, billetes.get(valor)});
+                    }
+                }
+            } else if (retirar == 2) {
+                TF_Imprimir.setText("El cliente no existe.");
+            } else if (retirar == 3) {
+                TF_Imprimir.setText("Saldo insuficiente.");
+            } else if (retirar == 4) {
+                TF_Imprimir.setText("El cajero no existe.");
+            } else if (retirar == 5) {
+                TF_Imprimir.setText("Monto no permitido, solo múltiplos de 10.000.");
+            } else if (retirar == 6) {
+                TF_Imprimir.setText("Monto no permitido, solo se puede entre 10.000 y 1.000.000.");
+            } else if (retirar == 7) {
+                TF_Imprimir.setText("No hay billetes suficientes para retirar.");
+            } else if (retirar == 8) {
+                TF_Imprimir.setText("El cliente está ocupado.");
+            } else if (retirar == 9) {
+                TF_Imprimir.setText("El cajero está ocupado.");
+            } else if (retirar == 10) {
+                TF_Imprimir.setText("Ingrese un valor entre 10.000 y 1.000.000.");
+            } else {
+                TF_Imprimir.setText("Ingrese los datos necesarios para retirar.");
+            }
+        }
     }//GEN-LAST:event_B_ENTERActionPerformed
 
     private void B_CORREGIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CORREGIRActionPerformed
-        /*String corregir = TF_Imprimir.getText();
+        String corregir = TF_Imprimir.getText();
 
         if (corregir.length() > 0) {
             String corregido = corregir.substring(0, corregir.length() - 1);//crea una nueva cadena a partir de una existente.
             TF_Imprimir.setText(corregido);
-        } //  Fin if*/
+        } //  Fin if
     }//GEN-LAST:event_B_CORREGIRActionPerformed
 
     private void B_N1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_N1ActionPerformed
@@ -448,8 +461,14 @@ public class interfazCajero extends javax.swing.JFrame {
     private javax.swing.JButton B_N8;
     private javax.swing.JButton B_N9;
     private javax.swing.JLabel L_CajeroAutomático;
+    private javax.swing.JLabel L_IDCajero;
+    private javax.swing.JLabel L_IDCliente;
+    private javax.swing.JLabel L_NumeroCuenta;
     private javax.swing.JTextField TF_Imprimir;
+    private javax.swing.JTextField idCajero;
+    private javax.swing.JTextField idCliente;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField ncuenta;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

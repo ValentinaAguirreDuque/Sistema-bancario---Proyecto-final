@@ -375,20 +375,21 @@ public class interfazAdministracion extends javax.swing.JFrame {
     }
 
     private void B_BuscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarPorNombreActionPerformed
+        limpiar();
         if (nombre.getText().isEmpty()) {
-            salida.setText("El campo 'Nombre' esta vacío. Ingrese un nombre");
+            salida.setText("El campo 'Nombre' está vacío. Ingrese un nombre");
         } else {
-            CCliente cliente = c.buscarClienteNombre(nombre.getText());
-            if (cliente != null) {
+            ArrayList<CCliente> listaC = new ArrayList<>();
+            listaC = c.consultarClientes();
 
-                modelo.setRowCount(0);
-                modelo.addRow(new Object[]{cliente.getId(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getCiudad(), cliente.getNcuenta(), cliente.getSaldo()});
+            //limpio la tabla antes de llevar los valores
+            modelo.setRowCount(0);
 
-                salida.setText("Los clientes de nombre: " + nombre.getText() + " se han encontrado."); // si lo de arriba se hizo, devuelve la salida correcta
-            } else {
-                salida.setText("No se encuentran ese nombre. ");
+            for (CCliente con : listaC) {
+                modelo.addRow(new Object[]{con.getId(), con.getNombre(), con.getApellido(), con.getTelefono(), con.getCiudad(), con.getNcuenta(), con.getSaldo(), con.getEstado()});
             }
         }
+
     }//GEN-LAST:event_B_BuscarPorNombreActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed

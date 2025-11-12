@@ -285,9 +285,9 @@ public class CConsultas_Administracion {
     }
 //------------------------------------------------------------------------------
 
-    public CCliente buscarClienteNombre(Connection con, String nombre) {
+    public ArrayList<CCliente> buscarClienteNombre(Connection con, String nombre) {
         this.con = con;
-        CCliente cliente = null;
+        ArrayList<CCliente> cliente = new ArrayList<>();
         query = "SELECT * FROM clientes WHERE nombre LIKE '%" + nombre + "%'"; // Se hizo el cambio para que busque similares o solo por inicial
 
         try {
@@ -297,7 +297,7 @@ public class CConsultas_Administracion {
             ResultSet resultado = preparar.executeQuery();
 
             if (resultado.next()) {
-                cliente = new CCliente(
+                CCliente c = new CCliente(
                         resultado.getInt("id"),
                         resultado.getString("nombre"),
                         resultado.getString("apellido"),

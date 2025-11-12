@@ -109,8 +109,8 @@ public class CControlador_Administracion {
     }
 //------------------------------------------------------------------------------    
 
-    public CCliente buscarClienteNombre(String nombre) {
-        CCliente cliente = null;
+    public ArrayList<CCliente> buscarClienteNombre(String nombre) {
+        ArrayList<CCliente> cliente = new ArrayList<>();
         conecta = con.conectar();
         if (conecta != null) {
             cliente = consulta.buscarClienteNombre(conecta, nombre);
