@@ -238,11 +238,11 @@ public class CConsultas_Administracion {
                     PreparedStatement preparar2 = con.prepareStatement(query);
                     preparar2.executeUpdate();
                     return true;
-                }else{
+                } else {
                     System.out.println("El cliente está ocupado.");
                     return false;
                 }
-            }else{
+            } else {
                 System.out.println("El cliente no existe.");
                 return false;
             }
@@ -288,7 +288,7 @@ public class CConsultas_Administracion {
     public CCliente buscarClienteNombre(Connection con, String nombre) {
         this.con = con;
         CCliente cliente = null;
-        query = "SELECT * FROM clientes WHERE nombre='" + nombre + "'";
+        query = "SELECT * FROM clientes WHERE nombre LIKE '%" + nombre + "%'"; // Se hizo el cambio para que busque similares o solo por inicial
 
         try {
             //preparo la consulta
@@ -318,15 +318,35 @@ public class CConsultas_Administracion {
 
     public boolean consignar(Connection con, int id, double valor) {
         this.con = con;
-        CCliente obj = this.buscarClienteID(con, id);
-        obj.setSaldo(obj.getSaldo() + valor);
-        query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "' WHERE id='" + id + "';";
+
         try {
+            query = "SELECT estado FROM clientes WHERE id=" + id + ";";
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
             //ejecuto la consulta luego de prepararla
-            preparar.executeUpdate();
-            return true;
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE clientes SET estado=1 WHERE id=" + id + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
+
+                    CCliente obj = this.buscarClienteID(con, id);
+                    obj.setSaldo(obj.getSaldo() + valor);
+                    query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "', estado=0 WHERE id='" + id + "';";
+                    PreparedStatement preparar2 = con.prepareStatement(query);
+                    preparar2.executeUpdate();
+                    return true;
+                } else {
+                    System.out.println("El cliente está ocupado");
+                    return false;
+                }
+            } else {
+                System.out.println("El cliente no existe ");
+                return false;
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
@@ -336,23 +356,43 @@ public class CConsultas_Administracion {
 
     public boolean retirar(Connection con, int id, double valor) {
         this.con = con;
-        CCliente obj = this.buscarClienteID(con, id);
-        if (obj.getSaldo() >= valor) {
-            obj.setSaldo(obj.getSaldo() - valor);
-            query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "' WHERE id='" + id + "';";
-            try {
-                //preparo la consulta
-                PreparedStatement preparar = con.prepareStatement(query);
-                //ejecuto la consulta luego de prepararla
-                preparar.executeUpdate();
-                return true;
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+
+        try {
+            query = "SELECT estado FROM clientes WHERE id=" + id + ";";
+            //preparo la consulta
+            PreparedStatement preparar = con.prepareStatement(query);
+            //ejecuto la consulta luego de prepararla
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE clientes SET estado=1 WHERE id=" + id + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
+
+                    CCliente obj = this.buscarClienteID(con, id);
+                    if (obj.getSaldo() >= valor) {
+                        obj.setSaldo(obj.getSaldo() - valor);
+                        query = "UPDATE clientes SET saldo = '" + obj.getSaldo() + "', estado=0 WHERE id='" + id + "';";
+                        PreparedStatement preparar2 = con.prepareStatement(query);
+                        preparar2.executeUpdate();
+                    }
+                    return true;
+                }else {
+                    System.out.println("El cliente esta ocupado.");
+                    return false;
+                }
+            }else{
+                System.out.println("El cliente no existe.");
+                return false;
             }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
         }
-        return false;
     }
-//------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
 
     public CCajero buscarCajeroID(Connection con, int idCajero) {
         this.con = con;
