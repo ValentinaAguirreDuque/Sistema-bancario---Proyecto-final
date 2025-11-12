@@ -15,18 +15,18 @@ public class CConsultas_Cajero {
 
     Connection con;
     String query;
-    String resultadoCajero;
+    String resultadoCajero = "Los billetes retirados fueron: \n";
     HashMap<Integer, Integer> cajero = new HashMap<>();
 
     public CConsultas_Cajero() {
     }
 
-    public int retirarDinero(Connection con, int id, int ncuenta, int idCajero, int dinero) {
+    public int retirarDinero(Connection con, int idCliente, int ncuenta, int idCajero, int dinero) {
         this.con = con;
 
         try {
 //VERIFICAR EL ESTADO Y EL SALDO DEL CLIENTE------------------------------------            
-            query = "SELECT saldo, estado FROM clientes WHERE id= " + id + " AND WHERE ncuenta= " + ncuenta + ";";
+            query = "SELECT saldo, estado FROM clientes WHERE id= " + idCliente + " AND ncuenta= " + ncuenta + ";";
             PreparedStatement preparar = con.prepareStatement(query);
             ResultSet resultado = preparar.executeQuery();
 
@@ -59,9 +59,9 @@ public class CConsultas_Cajero {
             }
 
 //CAMBIAR EL ESTADO DEL CLIENTE-------------------------------------------------            
-            query = "UPDATE clientes SET estado=1 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+            query = "UPDATE clientes SET estado=1 WHERE ncuenta= " + ncuenta + " AND id= " + idCliente + ";";
             PreparedStatement preparar2 = con.prepareStatement(query);
-            preparar.executeUpdate();
+            preparar2.executeUpdate();
 
 //CAMBIAR EL ESTADO DEL CAJERO--------------------------------------------------
             query = "UPDATE cajeros SET estado=1 WHERE id=" + idCajero + ";";
@@ -78,7 +78,7 @@ public class CConsultas_Cajero {
             if (dinero == 0) {
                 System.out.println("ERROR: No hay un monto ingresado. Ingrese un monto");
 
-                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + idCliente + ";";
                 PreparedStatement preparar4 = con.prepareStatement(query);
                 preparar4.executeUpdate();
 
@@ -93,7 +93,7 @@ public class CConsultas_Cajero {
 
                 System.out.println("ERROR: Monto fuera de rango [10.000 Y 1´000.000]");
 
-                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + idCliente + ";";
                 PreparedStatement preparar6 = con.prepareStatement(query);
                 preparar6.executeUpdate();
 
@@ -106,7 +106,7 @@ public class CConsultas_Cajero {
             if (dinero % 10000 != 0) {
                 System.out.println("Error: Ingrese un monto multiplo de 10");
 
-                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + idCliente + ";";
                 PreparedStatement preparar8 = con.prepareStatement(query);
                 preparar8.executeUpdate();
 
@@ -122,7 +122,7 @@ public class CConsultas_Cajero {
             if (dinero == 10000) {
                 if (cajero.get(10000) >= 1) {
                     cajero.replace(10000, cajero.get(10000) - 1);
-                    resultadoCajero += "Billete de 10000: 1\n";
+                    resultadoCajero += "Billetes de 10.000: 1\n";
                 } else {
                     retiroExitoso = false;
                 }
@@ -131,7 +131,7 @@ public class CConsultas_Cajero {
             } else if (dinero == 20000) {
                 if (cajero.get(20000) >= 1) {
                     cajero.replace(20000, cajero.get(20000) - 1);
-                    resultadoCajero += "Billete de 20000: 1\n";
+                    resultadoCajero += "Billetes de 20.000: 1\n";
                 } else {
                     retiroExitoso = false;
                 }
@@ -141,7 +141,7 @@ public class CConsultas_Cajero {
                 if (cajero.get(20000) >= 2 && cajero.get(10000) >= 1) {
                     cajero.replace(20000, cajero.get(20000) - 2);
                     cajero.replace(10000, cajero.get(10000) - 1);
-                    resultadoCajero += "Billete de 20000: 2\nBillete de 10000: 1\n";
+                    resultadoCajero += "Billetes de 20.000: 2 \nBilletes de 10.000: 1 \n";
                 } else {
                     retiroExitoso = false;
                 }
@@ -152,7 +152,7 @@ public class CConsultas_Cajero {
                     cajero.replace(50000, cajero.get(50000) - 1);
                     cajero.replace(20000, cajero.get(20000) - 2);
                     cajero.replace(10000, cajero.get(10000) - 1);
-                    resultadoCajero += "Billete de 50000: 1\nBillete de 20000: 2\nBillete de 10000: 1\n";
+                    resultadoCajero += "Billetes de 50.000: 1 \nBilletes de 20.000: 2 \nBilletes de 10.000: 1 \n";
                 } else {
                     retiroExitoso = false;
                 }
@@ -165,7 +165,7 @@ public class CConsultas_Cajero {
                         cajero.replace(50000, cajero.get(50000) - 1);
                         cajero.replace(20000, cajero.get(20000) - 2);
                         cajero.replace(10000, cajero.get(10000) - 1);
-                        resultadoCajero += "Billete de 50000: 1\nBillete de 20000: 2\nBillete de 10000: 1\n";
+                        resultadoCajero += "Billetes de 50.000: 1 \nBilletes de 20.000: 2 \nBilletes de 10.000: 1 \n";
                         restante -= 100000;
                     }
                 }
@@ -185,7 +185,7 @@ public class CConsultas_Cajero {
                     }
                     if (cifra > 0) {
                         cajero.replace(valor, cajero.get(valor) - cifra);
-                        resultadoCajero += "Billete de " + valor + ": " + cifra + "\n";
+                        resultadoCajero += "Billetes de " + valor + ": " + cifra + "\n";
                         restante -= valor * cifra;
                     }
                     if (restante != 0) {
@@ -197,7 +197,7 @@ public class CConsultas_Cajero {
 //SI NO HAY BILLETES SUFICIENTS PARA RETIRAR------------------------------------
             if (!retiroExitoso) {
                 System.out.println("No hay billetes suficientes para retirar.");
-                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+                query = "UPDATE clientes SET estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + idCliente + ";";
                 PreparedStatement preparar10 = con.prepareStatement(query);
                 preparar10.executeUpdate();
 
@@ -210,7 +210,7 @@ public class CConsultas_Cajero {
 //CÓDIGO PARA CAMBIAR EL SALDO EN CLIENTE Y EN CAJEROS--------------------------
             saldo -= dinero;
 
-            query = "UPDATE clientes SET saldo=" + saldo + ", estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + id + ";";
+            query = "UPDATE clientes SET saldo=" + saldo + ", estado=0 WHERE ncuenta=" + ncuenta + " AND id=" + idCliente + ";";
             PreparedStatement preparar12 = con.prepareStatement(query);
             preparar12.executeUpdate();
 
@@ -229,6 +229,7 @@ public class CConsultas_Cajero {
 //CATCH-------------------------------------------------------------------------
         } catch (SQLException e) {
             System.out.println("Error en el SQL.");
+            System.out.println(query);
             return 0;
         }
     }

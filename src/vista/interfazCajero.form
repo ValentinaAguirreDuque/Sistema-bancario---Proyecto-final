@@ -55,12 +55,12 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="L_IDCajero" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="idCajero" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="IDcajero" min="-2" pref="71" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="L_IDCliente" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="idCliente" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="IDcliente" min="-2" pref="71" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -69,7 +69,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="L_NumeroCuenta" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="ncuenta" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Component id="nCuenta" min="-2" pref="71" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -110,14 +110,14 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="L_IDCajero" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="idCajero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IDcajero" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="L_NumeroCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ncuenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="L_IDCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="idCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IDcliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -348,16 +348,16 @@
         <Property name="text" type="java.lang.String" value="ID Cliente: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="idCajero">
+    <Component class="javax.swing.JTextField" name="IDcajero">
     </Component>
-    <Component class="javax.swing.JTextField" name="idCliente">
+    <Component class="javax.swing.JTextField" name="IDcliente">
     </Component>
     <Component class="javax.swing.JLabel" name="L_NumeroCuenta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Numero Cuenta:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="ncuenta">
+    <Component class="javax.swing.JTextField" name="nCuenta">
     </Component>
   </SubComponents>
 </Form>
