@@ -152,12 +152,11 @@ public class CConsultas_Administracion {
 
     public boolean borrarCliente(Connection con, int id) {
         this.con = con;
-        query = "DELETE FROM clientes WHERE id = '" + id + "' ; ";
         try {
             query = "SELECT estado FROM clientes WHERE id=" + id + ";";
             PreparedStatement preparar = con.prepareStatement(query);
             ResultSet resultado = preparar.executeQuery();
-            
+
             if (resultado.next()) {
                 if (resultado.getInt("estado") != 1) {
                     query = "UPDATE clientes SET estado=1 WHERE id=" + id + ";";
@@ -168,11 +167,11 @@ public class CConsultas_Administracion {
                     PreparedStatement preparar2 = con.prepareStatement(query);
                     preparar2.executeUpdate();
                     return true;
-                }else{
+                } else {
                     System.out.println("El cliente está ocupado");
                     return false;
                 }
-            }else{
+            } else {
                 System.out.println("EL cliente no existe");
                 return false;
             }
@@ -186,13 +185,32 @@ public class CConsultas_Administracion {
 
     public boolean editarCajeros(Connection con, int idCajero, int ndiez, int nveinte, int ncincuenta, int ncien) {
         this.con = con;
-        query = "UPDATE cajeros SET ndiez= '" + ndiez + "', nveinte= '" + nveinte + "', ncincuenta= '" + ncincuenta + "', ncien= '" + ncien + "' WHERE id='" + idCajero + "';";
         try {
+            query = "SELECT estado FROM cajeros WHERE id=" + idCajero + ";";
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
             //ejecuto la consulta luego de prepararla
-            preparar.executeUpdate();
-            return true;
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE cajeros SET estado=1 WHERE id=" + idCajero + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
+
+                    query = "UPDATE cajeros SET ndiez= '" + ndiez + "', nveinte= '" + nveinte + "', ncincuenta= '" + ncincuenta + "', ncien= '" + ncien + "', estado=0 WHERE id='" + idCajero + "';";
+                    PreparedStatement preparar2 = con.prepareStatement(query);
+                    preparar2.executeUpdate();
+                    return true;
+                } else {
+                    System.out.println("EL cajero está ocupado.");
+                    return false;
+                }
+            } else {
+                System.out.println("El cajero no existe.");
+                return false;
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
@@ -203,13 +221,32 @@ public class CConsultas_Administracion {
 //------------------------------------------------------------------------------
     public boolean editarClientes(Connection con, int id, String nombre, String apellido, String telefono, String ciudad, int ncuenta, double saldo) {
         this.con = con;
-        query = "UPDATE clientes SET nombre= '" + nombre + "' ,apellido= '" + apellido + "', telefono= '" + telefono + "', ciudad= '" + ciudad + "', ncuenta= '" + ncuenta + "', saldo= '" + saldo + "' WHERE id='" + id + "';";
         try {
+            query = "SELECT estado FROM clientes WHERE id=" + id + ";";
             //preparo la consulta
             PreparedStatement preparar = con.prepareStatement(query);
             //ejecuto la consulta luego de prepararla
-            preparar.executeUpdate();
-            return true;
+            ResultSet resultado = preparar.executeQuery();
+
+            if (resultado.next()) {
+                if (resultado.getInt("estado") != 1) {
+                    query = "UPDATE clientes SET estado=1 WHERE id=" + id + ";";
+                    PreparedStatement preparar1 = con.prepareStatement(query);
+                    preparar1.executeUpdate();
+
+                    query = "UPDATE clientes SET nombre= '" + nombre + "' ,apellido= '" + apellido + "', telefono= '" + telefono + "', ciudad= '" + ciudad + "', ncuenta= '" + ncuenta + "', saldo= '" + saldo + "', estado=0 WHERE id='" + id + "';";
+                    PreparedStatement preparar2 = con.prepareStatement(query);
+                    preparar2.executeUpdate();
+                    return true;
+                }else{
+                    System.out.println("El cliente está ocupado.");
+                    return false;
+                }
+            }else{
+                System.out.println("El cliente no existe.");
+                return false;
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
